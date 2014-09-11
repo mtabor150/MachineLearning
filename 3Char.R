@@ -4,9 +4,7 @@ library(hash)
 #occurences for a given string
 ThreeCharCount <- function(string)
 {
-	dict = hash()
-	dict$size = nchar(string) -2;
-	
+	dict = hash()	
 	#split up string into vector for quick individual acces
 	vector = strsplit(gsub("([[:alnum:]]{1})", "\\1", string), "")[[1]]
 	
@@ -65,6 +63,9 @@ ThreeCharAdd <- function(a, b)
 	return (b)
 }
 
+#This function is used strictly for a specific data Table type
+#and is incomplete
+#only meant to be used for the 
 CountForAllIds <- function(table)
 {
 	print("hello")
