@@ -122,11 +122,12 @@ Magnitude <- function(dict)
 }
 
 #returns a matrix of the cos(angle) between all of the vectors in a dict
-VADList <- function(dict)
+VADMatrix <- function(dict)
 {
 	list = c()
 	for(key1 in names(dict))
-	{
+	{	
+		print(key1)
 		vector1 = dict[[key1]]
 		for(key2 in names(dict))
 		{
@@ -135,7 +136,9 @@ VADList <- function(dict)
 			list = c(list, distance)
 		}
 	}
-	return (list)
+	size = length(dict)
+	matrix = matrix(list, ncol=size, nrow=size)
+	return (matrix)
 }
 
 #This function takes 2 "dicts" and returns the euclidean distance
@@ -193,12 +196,86 @@ VAngle <- function (dicta, dictb)
 
   if(norma > 0 && normb > 0)
   {
-  angle = adotb/(norma*normb)
-  angle = acos(angle)*(180/pi)
-  return (angle)
+    angle = adotb/(norma*normb)
+    if (angle == 1)
+    {
+      return (0)
+    }
+    else
+    {
+      angle = acos(angle)*(180/pi)
+      return (angle)
+    }
   }
   else
   {
-  	return (-1)
+    return (-1)
   }
+}
+
+#kmeans
+KMeans <- function(k, matrix, vectors, iterate = 10)
+{
+  #matrix = VADMatrix(vectors)
+  centroids = hash()
+  clusters = hash()
+
+  for(i in 1:k){
+    centroids[[toString(i)]] = i 
+  }
+
+  for(i in 1:iterate){
+    clusters = hash()
+    for(j in 1:length(vectors)){
+      shortest = 90
+      shortC = 1
+      for(f in names(centroids)){
+	dist = matrix[j,centroids[[f]]]
+	if(dist < shortest)
+	{
+	  shortest = dist
+	  shortC = centroids[[f]]
+	}
+      }
+      if(toString(shortC) %in% names(clusters))
+      {
+	clusters[[toString(shortC)]] = c(clusters[[toString(shortC)]], j)
+      }
+      else
+      {
+	clusters[[toString(shortC)]] = c(j)
+      }
+    }
+    #we have put all vectors into closest clusters
+    #now need to find mean of the clusters
+    for(centroid in names(centroids))
+    {
+      #find new centroid
+      smallestAve = 90
+      meanVector = centroids[[centroid]]
+      for(item in clusters[[toString(centroid)]])
+      {
+	average = 0
+	for(otherItem in clusters[[toString(centroid)]])
+	{
+	  average = average + matrix[item, otherItem]
+	}
+	average = average/(length(clusters[[toString(centroid)]]))
+	if(average < smallestAve)
+	{
+	  smallestAve = average
+	  meanVector = item
+	}
+      }
+      centroids[[centroid]] = meanVector
+    }
+    print("iteration: ")
+    print(i)
+    for(cluster in names(clusters))
+    {
+    
+    print(clusters[[cluster]])
+    } 
+  }
+  return (centroids)
 }
