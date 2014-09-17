@@ -72,15 +72,13 @@ ThreeCharAdd <- function(a, b)
 #only meant to be used for the 
 CountForAllIds <- function(table)
 {
-	list = hash()
+	list = list()
 	names = list()
 	for(i in 1:(length(table$V1)))
 	{
-		print(i)
 		index <- toString(table$V2[i])
 		if(index %in% names(names))
 		{
-			print(toString(table$V3[i]))
 			set <- list[[index]]
 			set <- ThreeCharCount(toString(table$V3[i]), dict=set)
 		}
@@ -124,7 +122,7 @@ Magnitude <- function(dict)
 }
 
 #returns a matrix of the cos(angle) between all of the vectors in a dict
-VectorAngDistMatrix <- function(dict)
+VADList <- function(dict)
 {
 	list = c()
 	for(key1 in names(dict))
@@ -133,10 +131,74 @@ VectorAngDistMatrix <- function(dict)
 		for(key2 in names(dict))
 		{
 			vector2 = dict[[key2]]
-			distance = VectorAngDist(vector1, vector2)
+			distance = VAngle(vector1, vector2)
 			list = c(list, distance)
 		}
 	}
-	matrix = matrix( list, nrow= length(dict), ncol=length(dict))
-	return (matrix)
+	return (list)
+}
+
+#This function takes 2 "dicts" and returns the euclidean distance
+EDist <- function (dicta, dictb)
+{
+  dist = 0;
+  for(key in names(dicta))
+  {
+    valueOfKeyInDictA = dicta[[key]]
+    if(!is.null(dictb[[key]]))
+    {
+      valueOfKeyInDictB = dictb[[key]]
+      dist = dist+((valueOfKeyInDictA-valueOfKeyInDictB)^2)
+    }
+    else
+    {
+      dist = dist+(valueOfKeyInDictA^2)
+    }
+  }
+  
+  for(key in names(dictb))
+  {
+    valueOfKeyInDictB = dictb[[key]]
+    if(is.null(dicta[[key]]))
+    {
+      dist = dist+(valueOfKeyInDictB^2)
+    }
+  }
+  
+  dist = sqrt(dist)
+  return (dist)
+}
+
+#This function takes 2 "dicts" and returns the angle between them
+VAngle <- function (dicta, dictb)
+{
+  norma = 0
+  adotb = 0
+  for(key in names(dicta))
+  {
+    norma = norma + (dicta[[key]]^2)
+    if(!is.null(dictb[[key]]))
+    {
+      adotb = adotb + (dicta[[key]]*dictb[[key]])
+    }
+  }
+  norma = sqrt(norma)
+  
+  normb = 0
+  for(key in names(dictb))
+  {
+    normb = normb + (dictb[[key]]^2)
+  }
+  normb = sqrt(normb)
+
+  if(norma > 0 && normb > 0)
+  {
+  angle = adotb/(norma*normb)
+  angle = acos(angle)*(180/pi)
+  return (angle)
+  }
+  else
+  {
+  	return (-1)
+  }
 }
