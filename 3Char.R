@@ -88,3 +88,34 @@ CountForAllIds <- function(table)
 	}
 	return (set)
 }
+
+#This function takes 2 "dicts" and returns the euclidean distance
+EDist <- function (dicta, dictb)
+{
+  dist = 0;
+  for(key in names(dicta))
+  {
+    valueOfKeyInDictA = dicta[[key]]
+    if(!is.null(dictb[[key]]))
+    {
+      valueOfKeyInDictB = dictb[[key]]
+      dist = dist+((valueOfKeyInDictA-valueOfKeyInDictB)^2)
+    }
+    else
+    {
+      dist = dist+(valueOfKeyInDictA^2)
+    }
+  }
+  
+  for(key in names(dictb))
+  {
+    valueOfKeyInDictB = dictb[[key]]
+    if(is.null(dicta[[key]]))
+    {
+      dist = dist+(valueOfKeyInDictB^2)
+    }
+  }
+  
+  dist = sqrt(dist)
+  return (dist)
+}
