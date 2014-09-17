@@ -2,9 +2,12 @@ library(hash)
 
 #this function will be used to count all of the three character
 #occurences for a given string
-ThreeCharCount <- function(string)
+ThreeCharCount <- function(string, dict=NULL)
 {
-	dict = hash()	
+	if(is.null(dict))
+	{
+	  dict = hash()	
+	}
 	#split up string into vector for quick individual acces
 	vector = strsplit(gsub("([[:alnum:]]{1})", "\\1", string), "")[[1]]
 	
@@ -51,7 +54,7 @@ ThreeCharAdd <- function(a, b)
 {
 	for(string in names(a))
 	{
-		if(string %in% names(b))
+		if(!is.null(b[[string]]))
 		{
 			b[[string]] = (b[[string]] + a[[string]])
 		}
@@ -60,6 +63,7 @@ ThreeCharAdd <- function(a, b)
 			b[[string]] = a[[string]]
 		}
 	}
+
 	return (b)
 }
 
@@ -68,23 +72,71 @@ ThreeCharAdd <- function(a, b)
 #only meant to be used for the 
 CountForAllIds <- function(table)
 {
-	print("hello")
-	set = c()
+	list = hash()
+	names = list()
 	for(i in 1:(length(table$V1)))
 	{
 		print(i)
-		index <- toString(table$V2)
-		if(index %in% names(set) )
+		index <- toString(table$V2[i])
+		if(index %in% names(names))
 		{
-			print("CountForAllIds, inside if statement")
-			tempDict <- ThreeCharCount(toString(table$V3[i]))
-			set[[index]] <- ThreeCharAdd(set[[index]], tempDict)
+			print(toString(table$V3[i]))
+			set <- list[[index]]
+			set <- ThreeCharCount(toString(table$V3[i]), dict=set)
 		}
 		else
 		{
-			print("inside else statement")
-			set[[index]] <- ThreeCharCount(toString(table$V3[i]))
+			names[[index]] = 0
+			set <- hash()
+			set <- ThreeCharCount(toString(table$V3[i]), dict=set)
+			list[[index]] <- set
 		}
 	}
-	return (set)
+	return (list)
+}
+
+#returns the cosine of the angle between two vectors
+#uses dot product formula
+VectorAngDist <- function( dictA, dictB)
+{
+	dist <-0.0
+	magnitude = Magnitude(dictA)*Magnitude(dictB)
+	for(key in names(dictA))
+	{
+		if(!is.null(dictB[[key]]))
+		{
+			dist = dist + (dictB[[key]] * dictA[[key]])
+		}
+	}
+	return (dist/magnitude)
+}
+
+#returns the magnitude of a vector
+Magnitude <- function(dict)
+{
+	value <-0
+	for(key in names(dict))
+	{
+		tempVal = dict[[key]]
+		value = value + tempVal*tempVal
+	}
+	return (sqrt(value))
+}
+
+#returns a matrix of the cos(angle) between all of the vectors in a dict
+VectorAngDistMatrix <- function(dict)
+{
+	list = c()
+	for(key1 in names(dict))
+	{
+		vector1 = dict[[key1]]
+		for(key2 in names(dict))
+		{
+			vector2 = dict[[key2]]
+			distance = VectorAngDist(vector1, vector2)
+			list = c(list, distance)
+		}
+	}
+	matrix = matrix( list, nrow= length(dict), ncol=length(dict))
+	return (matrix)
 }
