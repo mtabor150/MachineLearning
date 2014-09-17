@@ -119,3 +119,30 @@ EDist <- function (dicta, dictb)
   dist = sqrt(dist)
   return (dist)
 }
+
+#This function takes 2 "dicts" and returns the angle between them
+VAngle <- function (dicta, dictb)
+{
+  norma = 0
+  adotb = 0
+  for(key in names(dicta))
+  {
+    norma = norma + (dicta[[key]]^2)
+    if(!is.null(dictb[[key]]))
+    {
+      adotb = adotb + (dicta[[key]]*dictb[[key]])
+    }
+  }
+  norma = sqrt(norma)
+  
+  normb = 0
+  for(key in names(dictb))
+  {
+    normb = normb + (dictb[[key]]^2)
+  }
+  normb = sqrt(normb)
+
+  angle = adotb/(norma*normb)
+  angle = acos(angle)*(180/pi)
+  return (angle)
+}
