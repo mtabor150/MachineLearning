@@ -7,6 +7,8 @@
 #include <iostream>
 #include <map>
 #include <cmath>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #include "Three_Char_Vector.h"
 #include "Twitter_Parse.h"
@@ -22,7 +24,7 @@ struct id_vector_pair
 
 
 //define a map for id_vector_pairs
-#define vector_map map<int, three_char_vector>
+typedef map<int, three_char_vector> vector_map;
 #define EPS pow(10,-8)
 
 
@@ -63,43 +65,50 @@ vector_map vector_map_constructor(string filename)
 	return ret_map;
 }
 
-
-
-void print_vect_with_id(vector_map map, int id)
+three_char_vector average_vector(vector_map *map)
 {
-	three_char_vector vect;
-	vect = map[id];
+	three_char_vector ret_vect = three_char_vector();
+
+	//iterate through map
+	three_char_vector temp_vect;
+	vector_map::iterator iter;
+	for(iter = map->begin(); iter != map->end(); ++iter)
+	{
+		temp_vect = unit_vector(&iter->second);
+		ret_vect = add_dict(&temp_vect, &ret_vect);
+	}
+
+	return ret_vect;
+}
+
+
+
+void print_vect_with_id(vector_map *map, int id)
+{
+	three_char_vector *vect;
+	vect = &(*map)[id];
 	print_vector(vect);
 }
 
-void print_all_ids(vector_map map)
+void print_all_ids(vector_map *map)
 {
-	std::vector_map::iterator it;
-	for(it=map.begin(); it!=map.end(); ++it)
+	vector_map::iterator it;
+	for(it=map->begin(); it!=map->end(); ++it)
 	{
 		cout << "id: " << it->first << endl;
 		//print_vect_with_id(map, it->first);
 	}
 }
 
-void copy_map(vector_map map, std::vector_map copy)
+void print_all_distances(vector_map *map)//map<int, three_char_vector> copy)
 {
-	std::vector_map::iterator it;
-	for(it=map.begin(); it!=map.end(); ++it)
+	vector_map::iterator it;
+	for(it=map->begin(); it!=map->end(); ++it)
 	{
-		copy[it->first] = it->second;
-	}
-}
-
-void print_all_distances(vector_map map)//map<int, three_char_vector> copy)
-{
-	std::vector_map::iterator it;
-	for(it=map.begin(); it!=map.end(); ++it)
-	{
-		std::vector_map::iterator it2;
-		for(it2 = map.begin(); it2!=map.end(); ++it2)
+		vector_map::iterator it2;
+		for(it2 = map->begin(); it2!=map->end(); ++it2)
 		{
-			double temp = VAngle(it->second, it2->second);
+			double temp = VAngle(&it->second, &it2->second);
 			if(abs(temp) < EPS)
 			{
 				cout << " 0.00000";
@@ -113,11 +122,46 @@ void print_all_distances(vector_map map)//map<int, three_char_vector> copy)
 	}
 }
 
-int main()
+//writes each three_char_vector to a .csv file at the location of "path" with the user_id as file name
+void write_vector_map_to_file(vector_map * map, string path)
 {
-	std::vector_map vect_map = std::vector_map();
+	//check to see if directory exists
+	struct stat info;
 
-	vect_map = vector_map_constructor("../twitter_text/ht-tweets.txt");
-	print_all_ids(vect_map);
-	print_all_distances(vect_map);
+	if( stat( path.c_str(), &info ) != 0 )
+	{
+	    printf( "%s is no directory\n", path.c_str() );
+		printf( "creating directory %s\n", path.c_str() );
+		mkdir(path.c_str(),0777);
+	}
+
+	string temp = "";
+	temp.append(path);
+	vector_map::iterator iter;
+	for(iter = map->begin(); iter!=map->end(); ++iter)
+	{
+		//create local varables
+		three_char_vector vect = iter->second;
+		dictionary dict = vect.dict;
+
+		//reset temp to path
+		temp = "";
+		temp.append(path);
+
+		//append proper filename
+		string file_name = to_string(iter->first);
+		file_name.append(".csv");
+		temp.append(file_name);
+
+		ofstream fout(temp);
+	    // for each key
+	    dictionary::iterator iter2;
+	    for (iter2 = dict.begin(); iter2 != dict.end(); ++iter2) {
+	    	//cout << " x x x" << endl;
+	        // print key and value
+	        //cout << iter2->first << ',' << iter2->second << "\n";
+	        fout << "\"" << iter2->first << "\"" << ',' << iter2->second << "\n";
+	    }
+	    fout.close();
+	}
 }
