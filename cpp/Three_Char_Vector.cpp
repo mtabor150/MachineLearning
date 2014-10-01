@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <map>
+#include <unordered_map>
 #include <string>
 #include <cmath>
 #include <math.h>
@@ -19,10 +20,12 @@ three_char_dict is a struct that will contain a vector
 which will record all of the three character
 occurences from that particular user.
 ---------------------------------------------------------*/
+typedef unordered_map<string, double> dictionary;
+
 struct three_char_vector
 {
-	map<string, int> dict;
-	map<string, int>::iterator iter;
+	dictionary dict;
+	dictionary::iterator iter;
 };
 
 //returns whether a particular key exists in a vector
@@ -32,10 +35,10 @@ bool key_exists(three_char_vector vect, string key)
 }
 
 //adds the three char count of the text to an existing vector
-void three_char_count_with_vector(string text, struct three_char_vector * vect)
+void three_char_count_with_vector(string text, three_char_vector * vect)
 {
 	//iterate through text and count three char sequences
-	map<string, int> ret_dict = vect->dict;
+	dictionary ret_dict = vect->dict;
 	int dictionarySize = text.length()-2;
 	string str;
 	for(int i = 0; i<dictionarySize; i++)
@@ -45,7 +48,7 @@ void three_char_count_with_vector(string text, struct three_char_vector * vect)
 	 		//cout << i << endl;
 	 	}
 	    str = text.substr(i, 3);
-		if(ret_dict.count(str))
+		if(ret_dict.find(str)!= ret_dict.end())
 		{
 			ret_dict[str] = ret_dict[str]+1;
 		}
@@ -66,18 +69,16 @@ three_char_vector three_char_count(string text)
 	return ret_vect;
 }
 
-
-
 //adds vector 2 to vector 1
-three_char_vector add_dict(struct three_char_vector *vect1, struct three_char_vector *vect2)
+three_char_vector add_dict(three_char_vector *vect1, three_char_vector *vect2)
 {
 	//cout << "a" << endl;
 	//loop through vector 1 adding each key-value pair to return dict
-	map<string, int> ret_dict = vect1->dict;
-	map<string, int> add_dict = vect2->dict;
+	dictionary ret_dict = vect1->dict;
+	dictionary add_dict = vect2->dict;
 	string key;
 	int val1;
-	map<string, int>::iterator iter;
+	dictionary::iterator iter;
 	//loop through vector 2 adding each key-value pair to return dict
 	for(iter = add_dict.begin();
 		iter != add_dict.end(); ++iter)
@@ -85,7 +86,7 @@ three_char_vector add_dict(struct three_char_vector *vect1, struct three_char_ve
 		//cout << "b" <<endl;
 		key = iter->first;
 		val1 = iter->second;
-		if(ret_dict.count(key))
+		if(ret_dict.find(key)!= ret_dict.end())
 		{
 			ret_dict[key] += val1;
 		}
@@ -99,7 +100,7 @@ three_char_vector add_dict(struct three_char_vector *vect1, struct three_char_ve
 }
 
 //gets angle between two vectors
-double VAngle(three_char_vector vect1, three_char_vector vect2)
+double VAngle(three_char_vector *vect1, three_char_vector *vect2)
 {
 	double mag_1 = 0.0;
 	double dot_product = 0.0;
@@ -108,12 +109,12 @@ double VAngle(three_char_vector vect1, three_char_vector vect2)
 	//the sum of the squares of each component.
 	//the dot product is the sum of the product of any components
 	//the two vectors have in common.
-	map<string, int> dict1 = vect1.dict;
-	map<string, int> dict2 = vect2.dict;
+	dictionary dict1 = vect1->dict;
+	dictionary dict2 = vect2->dict;
 	string key;
 	double val1;
 	//int i =0;
-	map<string, int>::iterator iter;
+	dictionary::iterator iter;
 	for(iter = dict1.begin(); 
 		iter != dict1.end(); iter++) 
 	{
@@ -123,7 +124,7 @@ double VAngle(three_char_vector vect1, three_char_vector vect2)
 		mag_1 = mag_1 + val1*val1;
 
 		//add to dot product if key exists in both vectors
-		if(dict2.count(key))
+		if(dict2.find(key)!= dict2.end())
 		{
 			dot_product = dot_product + dict2[key]*val1;
 		}
@@ -169,13 +170,60 @@ double VAngle(three_char_vector vect1, three_char_vector vect2)
 	}
 }
 
-void print_vector(three_char_vector vect)
+//returns the unit vector
+three_char_vector unit_vector(three_char_vector *vect)
 {
-	for(vect.iter = vect.dict.begin(); 
-		vect.iter != vect.dict.end(); vect.iter++) 
+	//reference vect for its dictionary
+	three_char_vector ret_vect;
+	dictionary ret_dict = vect->dict;
+
+	//iterate through three_char_vector to find magnitude
+	double magnitude=0.0;
+	dictionary::iterator iter;
+	for(iter = ret_dict.begin(); iter!=ret_dict.end(); ++iter)
 	{
-		string key = vect.iter->first;
-		double val2 = vect.iter->second;
+		double value = iter->second;
+		magnitude += value*value; //value squared
+	}
+
+	magnitude = sqrt(magnitude);
+
+	//divide each of the components by the magintude
+	for(iter = ret_dict.begin(); iter!=ret_dict.end(); ++iter)
+	{
+		double value = iter->second;
+		iter->second = value/ magnitude;
+	}
+
+	ret_vect.dict = ret_dict;
+	return ret_vect;
+}
+
+bool three_char_vector_equal(three_char_vector *vect1, three_char_vector *vect2)
+{
+	bool validity = true;
+	dictionary dict1 = vect1->dict;
+	dictionary dict2 = vect2->dict;
+
+	dictionary::iterator iter;
+	for(iter=dict1.begin(); iter!=dict1.end(); ++iter)
+	{
+		if(!(dict1.find(iter->first)!= dict1.end()) || abs(iter->second - dict2[iter->first])< EPS ){
+			validity = false;
+			iter=dict1.end();
+			break;
+		}
+	}
+	return validity;
+}
+
+void print_vector(three_char_vector *vect)
+{
+	for(vect->iter = vect->dict.begin(); 
+		vect->iter != vect->dict.end(); vect->iter++) 
+	{
+		string key = vect->iter->first;
+		double val2 = vect->iter->second;
 
 		cout << key << " : " << val2 << endl;
 	}
