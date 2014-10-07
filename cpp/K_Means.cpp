@@ -261,10 +261,16 @@ cluster_group k_means_cluster(vector_map *map, int k)
 int main()
 {
 	vector_map vect_map = vector_map();
+	vect_map = read_file_to_vector_map("bavarian-tweets-vectors/");
 
-	vect_map = vector_map_constructor("../twitter_text/bar-tweets.txt");
+	//vect_map = vector_map_constructor("../twitter_text/ht-tweets.txt");
 
-	write_vector_map_to_file(&vect_map, "bavarian-tweets-vectors/");
+	//write_vector_map_to_file(&vect_map, "ht-tweets-vectors/");
+	vect_map = read_file_to_vector_map("all-tweets-vectors/");
+
+	//print_all_vectors(&vect_map);
+
+
 
 	cout << "ada" << endl;
 	ifstream t("../twitter_text/MobyDick.txt");
@@ -279,17 +285,16 @@ int main()
 	struct three_char_vector count3;
 	count3 = three_char_count(str);
 	
-	vect_map[1] = count3;
+	//vect_map[1] = count3;
 
 	print_all_ids(&vect_map);
-	print_all_distances(&vect_map);
+	//print_all_distances(&vect_map);
 
-	/*
 	for(int i = 1; i<20; i++)
 	{
 	cluster_group group = k_means_cluster(&vect_map, i);
 	}
-	*/
+	
 
 	return 0;
 }
