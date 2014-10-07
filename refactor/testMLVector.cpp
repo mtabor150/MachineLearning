@@ -1,7 +1,18 @@
 #include <iostream>
 #include <string>
-#include "MLVector.h" 
+#include <assert.h>
+#include <cmath>
+#include "MLVector.h"
 using namespace std;
+
+void check_distance(const MLVector<string>& first, const MLVector<string>& other, double expected_val, dist_type type)
+{
+  double dist = ((MLVector<string>)first).distance(other, type);
+  if(dist != expected_val )
+  {
+    cout << "expected: " << expected_val << " actual: " << dist << " difference: " << expected_val-dist << endl;
+  }
+}
 
 int main(){
   
@@ -23,33 +34,80 @@ int main(){
   t.print("vector t");
   u.print("vector u");
   v.print("vector v");
-  cout << "====================="<< endl;
-  cout << "Cosine distance(t,t): " << t.cosine_distance(t) << endl;
-  cout << "Cosine distance(t,u): " << t.cosine_distance(u) << endl;
-  cout << "Cosine distance(t,v): " << t.cosine_distance(v) << endl;
-  cout << "Cosine distance(u,v): " << v.cosine_distance(u) << endl;
-  cout << "====================="<< endl;
-  cout << "L0 distance(t,t): " << t.l0_distance(t) << endl;
-  cout << "L0 distance(t,u): " << t.l0_distance(u) << endl;
-  cout << "L0 distance(t,v): " << t.l0_distance(v) << endl;
-  cout << "L0 distance(u,v): " << u.l0_distance(v) << endl;
-  cout << "====================="<< endl;
-  cout << "L1 distance(t,t): " << t.l1_distance(t) << endl;
-  cout << "L1 distance(t,u): " << t.l1_distance(u) << endl;
-  cout << "L1 distance(t,v): " << t.l1_distance(v) << endl;
-  cout << "L1 distance(u,v): " << u.l1_distance(v) << endl;
-  cout << "====================="<< endl;
-  cout << "L2 distance(t,t): " << t.l2_distance(t) << endl;
-  cout << "L2 distance(t,u): " << t.l2_distance(u) << endl;
-  cout << "L2 distance(t,v): " << t.l2_distance(v) << endl;
-  cout << "L2 distance(u,v): " << u.l2_distance(v) << endl;
-  cout << "====================="<< endl;
-  cout << "Linfinity distance(t,t): " << t.linfinity_distance(t) << endl;
-  cout << "Linfinity distance(t,u): " << t.linfinity_distance(u) << endl;
-  cout << "Linfinity distance(t,v): " << t.linfinity_distance(v) << endl;
-  cout << "Linfinity distance(u,v): " << u.linfinity_distance(v) << endl;
+
+  /* test cosine_distance() */
+  //cos_dist to self
+  check_distance(t,t,0,COS_DIST);
+
+  //cos_dist from t to u
+  check_distance(t,u,2,COS_DIST);
+
+  //cos_dist from t to v
+  check_distance(t,v,1,COS_DIST);
   
+  //cos_dist from u to v
+  check_distance(u,v,1,COS_DIST);
+  /* end test cosine_distance() */
+
+
+  /* test l0_distance() */
+  //l0_dist to self
+  check_distance(t,t,0,L0_DIST);
+
+  //l0_dist from t to u
+  check_distance(t,u,6,L0_DIST);
+
+  //l0_dist from t to v
+  check_distance(t,v,0,L0_DIST);
   
+  //l0_dist from u to v
+  check_distance(u,v,0,L0_DIST);
+  /* end test l0_distance() */
+
+
+  /* test l1_distance() */
+  //l1_dist to self
+  check_distance(t,t,0,L1_DIST);
+
+  //l1_dist from t to u
+  check_distance(t,u,6,L1_DIST);
+
+  //l1_dist from t to v
+  check_distance(t,v,6,L1_DIST);
+  
+  //;1_dist from u to v
+  check_distance(u,v,6,L1_DIST);
+  /* end test l1_distance() */
+
+
+  /* test l2_distance() */
+  //l2_dist to self
+  check_distance(t,t,0,L2_DIST);
+
+  //l2_dist from t to u
+  check_distance(t,u,3.4641,L2_DIST);
+
+  //l2_dist from t to v
+  check_distance(t,v,2.44949,L2_DIST);
+  
+  //l2_dist from u to v
+  check_distance(u,v,2.44949,L2_DIST);
+  /* end test l2_distance() */
+
+
+  /* test linfinity_distance() */
+  //linf_dist to self
+  check_distance(t,t,0,LINF_DIST);
+
+  //linf_dist from t to u
+  check_distance(t,u,2,LINF_DIST);
+
+  //linf_dist from t to v
+  check_distance(t,v,1,LINF_DIST);
+  
+  //linf_dist from u to v
+  check_distance(u,v,1,LINF_DIST);
+  /* end test linfinity_distance() */
   
   return 0;
 }
