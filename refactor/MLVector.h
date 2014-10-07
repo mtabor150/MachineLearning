@@ -17,19 +17,26 @@ class MLVector : public unordered_map<Key, T, Hash, Pred, Alloc>  {
 
 public:
   
+  /* operator+=() */
   MLVector& operator+=(const MLVector& other){
     for(auto it=other.cbegin(); it!=other.cend(); ++it){
       (*this)[it->first] += it->second;
     }
   }
+  /* end operator+=() */
   
+
+  /* operator/=() */
   MLVector& operator/=(float divisor){
     for(auto it=(*this).begin(); it!=(*this).end(); ++it){
       (*this)[it->first] /= divisor;
     }
   }
+  /* end operator/=() */
+
   
-  /*function for easy printing of vectors*/
+  /* print()
+   * function for easy printing of vectors*/
   void print(const string& header = "vector" ){
     cout << "===== " << header << " ====="<< endl;
     int i = 0;
@@ -40,9 +47,11 @@ public:
     }
     cout << endl;
   }
+  /* end print() */
   
   
-  /*dot product divided by product of vector magnitudes*/
+  /* cosine_distance() 
+   * dot product divided by product of vector magnitudes*/
   float cosine_distance(const MLVector& other){
     float this_magnitude = 0, other_magnitude = 0, this_dot_other = 0;
     
@@ -50,7 +59,7 @@ public:
       float value = it->second;
       this_magnitude += (value*value);
       if(other.find(it->first) != other.end()){
-	this_dot_other += (value*other.at(it->first));
+	      this_dot_other += (value*other.at(it->first));
       }
     }
     
@@ -63,28 +72,32 @@ public:
     cosine = 1 - cosine;
     return cosine;
   }
+  /* end cosine_distance() */
   
   
-  /*absolute difference between like elements*/
+  /* l0_distance()
+   * absolute difference between like elements*/
   float l0_distance(const MLVector& other){
     float l0 = 0;
     for(auto it=(*this).cbegin(); it!=(*this).cend(); ++it){
       //take the abs() of the difference of like elements
       if(other.find(it->first) != other.end()){
-	l0 += abs(it->second-other.at(it->first));
+	      l0 += abs(it->second-other.at(it->first));
       }
     }
     return l0;
   }
+  /* end l0_distance() */
   
   
-  /*manhattan distance - sum of absolute values of differences between elements*/
+  /* l1_distance()
+   * manhattan distance - sum of absolute values of differences between elements*/
   float l1_distance(const MLVector& other){
     float l1 = 0;
     for(auto it=(*this).cbegin(); it!=(*this).cend(); ++it){
       //take the abs() of the difference of like elements
       if(other.find(it->first) != other.end()){
-	l1 += abs(it->second-other.at(it->first));
+	      l1 += abs(it->second-other.at(it->first));
       }
       //add everything in this thats not in other
       else l1 += abs(it->second);
@@ -93,21 +106,23 @@ public:
     //find everything in other thats not in this
     for(auto it=other.cbegin(); it!=other.cend(); ++it){
       if((*this).find(it->first) == (*this).end()){
-	l1 += abs(it->second);
+	      l1 += abs(it->second);
       }
     }
     return l1;
   }
+  /* end l1_distance() */
   
   
-  /*euclidean distance*/
+  /* l2_distance()
+   * euclidean distance*/
   float l2_distance(const MLVector& other){
     float l2 = 0;
     for(auto it=(*this).cbegin(); it!=(*this).cend(); ++it){
       //square the difference of like elements
       if(other.find(it->first) != other.end()){
-	float value = it->second-other.at(it->first);
-	l2 += (value*value);
+	      float value = it->second-other.at(it->first);
+	      l2 += (value*value);
       }
       //add squared unlike elements
       else l2 += (it->second*it->second);
@@ -116,44 +131,47 @@ public:
     //find everything in other thats not in this
     for(auto it=other.cbegin(); it!=other.cend(); ++it){
       if((*this).find(it->first) == (*this).end()){
-	l2 += (it->second*it->second);
+	      l2 += (it->second*it->second);
       }
     }
     return sqrt(l2);
   }
+  /* end l2_distance */
   
-  /*absolute max distance between elements*/
+  
+  /* linfinity_distance()
+   * absolute max distance between elements*/
   float linfinity_distance(const MLVector& other){
     float linf = 0;
     for(auto it=(*this).cbegin(); it!=(*this).cend(); ++it){
       //shared elements
       if(other.find(it->first) != other.end()){
-	float current = abs(it->second-other.at(it->first));
-	if(current > linf){
-	  linf = current;
-	}
+	      float current = abs(it->second-other.at(it->first));
+	      if(current > linf){
+	        linf = current;
+	      }
       }
       //elements only in this
       else {
-	float current = abs(it->second);
-	if(current > linf){
-	  linf = current;
-	}
+	      float current = abs(it->second);
+	      if(current > linf){
+	        linf = current;
+	      }
       }
     }
     //find everything in other thats not in this
     for(auto it=other.cbegin(); it!=other.cend(); ++it){
       if((*this).find(it->first) == (*this).end()){
-	float current = abs(it->second);
-	if(current > linf){
-	  linf = current;
-	}
+	      float current = abs(it->second);
+	      if(current > linf){
+	        linf = current;
+	      }
       }
     }
     return linf;
   }
-  
-  
+  /* end linfinity_distance() */
+
 };
 
 #endif
