@@ -33,8 +33,8 @@ void makeVector(MLVector<string>& charVector, string text = ""){
       charVector[it] += 1;
       
       if(end[0] <= 0){
-	end[0] = '\0';
-	end--;
+	      end[0] = '\0';
+	      end--;
       }
       end[0] = '\0';
       end--;
@@ -47,7 +47,6 @@ void makeVector(MLVector<string>& charVector, string text = ""){
 
 
 int main(){
-  
   ifstream fin("test-tweets.txt");
   
   DataSet<string> v;
@@ -57,7 +56,7 @@ int main(){
     string line;
     getline(fin, line);
     makeVector(temp, line.substr(line.rfind('\t')+1,line.size()));
-    v.push_back(temp);
+    v.push_back(&temp);
   }
   
   vector<DataSet<string> > clusters;

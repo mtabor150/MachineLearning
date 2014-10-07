@@ -7,8 +7,10 @@
 #include <vector>
 #include "MLVector.h"
 using namespace std;
+
+#define DIST_TYPE COS_DIST
          
-template <typename ItemType>
+template <typename ItemType=string>
 
 class DataSet : public vector<MLVector<ItemType> > {
 
@@ -66,7 +68,7 @@ public:
 	      float currentMinMax = numeric_limits<float>::infinity();
 	      for(int j = 0; j < numCent; j++){
 	        float minMax = 0;
-	        minMax = (*this)[i].cosine_distance(centroids[j]);
+	        minMax = (*this)[i].distance(centroids[j], DIST_TYPE);
 	        if(minMax < currentMinMax){
 	          currentMinMax = minMax;
 	        }
@@ -83,7 +85,7 @@ public:
   }
   /* end kcentroids() */
   
-  
+
   /* kmeans()
    * kMeans clustering implementation*/
   void kmeans(int k, vector<DataSet>& clusters){    
@@ -112,9 +114,9 @@ public:
 	        cout << "v"<< i << endl;
 	      }
 	      int centGroup = 0;
-	      float dist = (*this)[i].cosine_distance(centroids[0]);
+	      float dist = (*this)[i].distance(centroids[0], DIST_TYPE);
 	      for(int j = 1; j < k; j++){
-	        float currentDist = (*this)[i].cosine_distance(centroids[j]);
+	        float currentDist = (*this)[i].distance(centroids[j], DIST_TYPE);
 	        if(currentDist < dist){
 	          dist = currentDist;
 	          centGroup = j;
@@ -141,7 +143,7 @@ public:
       done = true;
       for(int i = 0; i < k; i++){
 	      cout << "Checking equivalence" << endl;
-	      float cdist = centroids[i].cosine_distance(previous_centroids[i]);
+	      float cdist = centroids[i].distance(previous_centroids[i], DIST_TYPE);
 	      if(cdist > .0000001 ){
 	        cout << "Centroid " << i << " not equivalent to previous centroid." << endl;
 	        cout << "cosine distance: " << cdist << endl;

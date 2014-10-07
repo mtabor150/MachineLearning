@@ -6,6 +6,15 @@
 #include <unordered_map>
 using namespace std;
 
+enum dist_type
+{
+  COS_DIST,
+  L0_DIST,
+  L1_DIST,
+  L2_DIST,
+  LINF_DIST
+};
+
 template < class Key,                                    // unordered_map::key_type
            class T = float,                              // unordered_map::mapped_type
            class Hash = hash<Key>,                       // unordered_map::hasher
@@ -108,6 +117,7 @@ public:
       if((*this).find(it->first) == (*this).end()){
 	      l1 += abs(it->second);
       }
+
     }
     return l1;
   }
@@ -138,7 +148,7 @@ public:
   }
   /* end l2_distance */
   
-  
+
   /* linfinity_distance()
    * absolute max distance between elements*/
   float linfinity_distance(const MLVector& other){
@@ -171,6 +181,36 @@ public:
     return linf;
   }
   /* end linfinity_distance() */
+
+
+  /* distance()
+   * mutli-purpose distance function */
+  float distance(const MLVector& other, dist_type type){
+    float ret_dist; // return distance
+    switch(type){
+      case COS_DIST:
+        ret_dist = cosine_distance(other);
+        break;
+      case L0_DIST:
+        ret_dist = l0_distance(other);
+        break;
+      case L1_DIST:
+        ret_dist = l1_distance(other);
+        break;
+      case L2_DIST:
+        ret_dist = l2_distance(other);
+        break;
+      case LINF_DIST:
+        ret_dist = linfinity_distance(other);
+        break;
+      default:
+        cout << "default in distance hit" << endl;
+        ret_dist = -1.0;
+        break;
+    }
+    return ret_dist;
+  }
+  /* end distance() */
 
 };
 
