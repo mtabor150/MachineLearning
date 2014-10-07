@@ -35,6 +35,10 @@ void print_vect_with_id(vector_map *map, int id);
 
 void print_all_ids(vector_map *map);
 
+void print_all_vectors(vector_map *map);
+
 void print_all_distances(vector_map *map);
 
 void write_vector_map_to_file(vector_map * map, string path);
+
+vector_map read_file_to_vector_map(string path);

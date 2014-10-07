@@ -9,6 +9,8 @@
 #include <cmath>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <dirent.h>
+#include <stdlib.h>
 
 #include "Three_Char_Vector.h"
 #include "Twitter_Parse.h"
@@ -100,6 +102,15 @@ void print_all_ids(vector_map *map)
 	}
 }
 
+void print_all_vectors(vector_map *map)
+{
+	vector_map::iterator it;
+	for(it=map->begin(); it!=map->end(); ++it)
+	{
+		print_vector(&it->second);
+	}
+}
+
 void print_all_distances(vector_map *map)//map<int, three_char_vector> copy)
 {
 	vector_map::iterator it;
@@ -164,4 +175,75 @@ void write_vector_map_to_file(vector_map * map, string path)
 	    }
 	    fout.close();
 	}
+}
+
+vector_map read_file_to_vector_map(string path)
+{
+	vector_map map;
+
+	cout << "bam" << endl;
+	DIR *dir;
+	struct dirent *ent;
+	if ((dir = opendir (path.c_str())) != NULL) 
+	{
+		/* print all the files and directories within directory */
+	 	while ((ent = readdir (dir)) != NULL) {
+	 		three_char_vector vect;
+	 		dictionary dict = vect.dict;
+	 		const char * comp1 = ".";
+	 		const char * comp2 = "..";
+	 		const char * f_name = ent->d_name;
+	 		cout << ent->d_name << endl;
+	 		if(strcmp(ent->d_name,comp1)!=0 && strcmp(ent->d_name,comp2)!=0)
+	 		{
+	 			cout << " 2 =-" << endl;
+	 			char buff[256];
+	    		ifstream fin;
+	    		string path_name = "";
+	    		path_name.append(path);
+	    		path_name.append(ent->d_name);
+	    		fin.open(path_name);
+	    		string token;
+	    		while(fin.getline(buff, 256))
+	    		{
+	    			//cout << buff << endl;
+
+	    			//key embedded between quotations
+	    			string key = "aaa";
+	    			key[0] = buff[1];
+	    			key[1] = buff[2];
+	    			key[2] = buff[3];
+	    			
+
+	    			//number placed after comma
+	    			string num = "";
+	    			//char character[1] = 'a';
+	    			int i = 6;
+	    			while(buff[i] != '\0')
+	    			{
+	    				num += buff[i];
+	    				i++;
+	    			}
+	    			//cout << stoi(num) << endl;
+	    			if(stoi(num)>0)
+	    			{
+	    			dict[key] = stoi(num);
+	    			}
+
+	    		}
+	    		vect.dict = dict;
+	    		map[atoi(ent->d_name)] = vect;
+	    	}
+	  	}
+	  	closedir (dir);
+	} 
+	else 
+	{
+	  	/* could not open directory */
+	  	perror ("");
+	  	return map;
+	}
+
+	//print_all_vectors(&map);
+	return map;
 }
