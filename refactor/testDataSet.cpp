@@ -3,65 +3,50 @@
 #include <string>
 #include <string.h>
 #include <vector>
+#include "NgramVector.h"
 #include "DataSet.h" 
 using namespace std;
 
-/* character vector constructor
- * works with utf-8 but not other unicode values
- * look into switching to ICU library
- */
-void makeVector(MLVector<string>& charVector, string text = ""){
-  int keyLength = 3;
-  
-  char* str = (char*)text.c_str();    	// utf-8 string
-  char* begin = str;			//begining of string
-  char* end = str+strlen(str);      	// end iterator
-  char* it = end;       		// string iterator
-  
-  int size = end-begin;
-  if(size <= keyLength){
-    charVector[text] = 1;
-  }
-  
-  else{
-    for(int i = 0; i < keyLength; i++){
-      it--;
-      if(it[0] < 0 && it[1] >= 0)it--;
-    }
-    
-    while(it >= begin){
-      charVector[it] += 1;
-      
-      if(end[0] <= 0){
-	      end[0] = '\0';
-	      end--;
-      }
-      end[0] = '\0';
-      end--;
-      
-      it--;
-      if(it[0] < 0)it--;
-     }
-  }
-}
-
 
 int main(){
-  ifstream fin("test-tweets.txt");
+  ifstream fin("small-test.txt");
+  //ifstream gin("bar-tweets.txt");
   
-  DataSet<string> v;
+  DataSet<NgramVector> v;
   
+  int i = 1;
   while(!fin.eof()){
-    MLVector<string> temp;
+    NgramVector temp(to_string(i++),"2","multi",3);
     string line;
     getline(fin, line);
-    makeVector(temp, line.substr(line.rfind('\t')+1,line.size()));
-    v.push_back(&temp);
+    temp.input_string(line.substr(line.rfind('\t')+1,line.size()));
+    v.push_back(temp);
   }
+  //v.print();
   
-  vector<DataSet<string> > clusters;
-  v.kmeans(6, clusters);
+  
+  vector<DataSet<NgramVector> > clusters;
+  for(int k = 1; k < 10; k++){
+    v.kmeans(k, clusters);
+    
+    vector<NgramVector> centroids;
 
-  
+    for(int i = 0; i < k; i++){
+      NgramVector temp;
+      clusters[i].mean(temp);
+      centroids.push_back(temp);
+    }
+    
+    float mean = 0;
+    for(int i = 0; i < k; i++){
+      float thismean = clusters[i].mean_distance(centroids[i]);
+      mean += thismean;
+      cout << "Mean distance from centroid " << i << ": " << thismean << endl;
+    }
+    mean /= k;
+    cout << "=============================================" << endl;
+    cout << "       Average Distance To Centroid: " << mean << endl;
+    cout << "==============================================" << endl;
+  }
   return 0;
 } 

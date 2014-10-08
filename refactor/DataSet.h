@@ -6,13 +6,14 @@
 #include <limits>
 #include <vector>
 #include "MLVector.h"
+#include "NgramVector.h"
 using namespace std;
 
 #define DIST_TYPE COS_DIST
          
-template <typename ItemType=string>
+template <class VectorType = NgramVector>
 
-class DataSet : public vector<MLVector<ItemType> > {
+class DataSet : public vector<VectorType> {
 
 public:
   
@@ -30,7 +31,7 @@ public:
   void print(){
     int size = (*this).size();
     for(int i = 0; i < size; i++){
-      (*this)[i].print(to_string(i));
+      (*this)[i].VectorType::print();
     }
   }
   /* end print() */
@@ -38,7 +39,7 @@ public:
 
   /* mean()
    * modifies a provided MLVector to be the mean vector of the dataset*/
-  void mean(MLVector<ItemType>& mean){
+  void mean(VectorType& mean){
     mean.clear();
     int numVectors = (*this).size();
     for(int i=0; i < numVectors; i++){
@@ -47,6 +48,20 @@ public:
     mean /= numVectors;
   }
   /* end mean() */
+  
+  
+    /* mean distance
+     * returns the average distace of the DataSet to a vector*/
+  float mean_distance(VectorType& centroid){
+    float mean = 0;
+    int numVectors = (*this).size();
+    for(int i=0; i < numVectors; i++){
+      mean += centroid.distance((*this)[i], DIST_TYPE);
+    }
+    mean /= numVectors;
+    return mean;
+  }
+  /*end mean distance*/
   
   
   /* kcentroids() 
@@ -88,7 +103,7 @@ public:
 
   /* kmeans()
    * kMeans clustering implementation*/
-  void kmeans(int k, vector<DataSet>& clusters){    
+  void kmeans(int k, vector<DataSet<VectorType> >& clusters){    
     //get initial centroids
     DataSet centroids, previous_centroids;
     kcentroids(k, centroids);
@@ -96,7 +111,7 @@ public:
     //initialize cluster vector
     clusters.clear();
     for(int i = 0; i < k; i++){
-      DataSet<ItemType> temp;
+      DataSet<VectorType> temp;
       clusters.push_back(temp);
     }
     
@@ -134,7 +149,7 @@ public:
       previous_centroids = centroids;
       for(int i = 0; i < k; i++){
 	      cout << "Computing mean for cluster: " << i <<  " of size "<< clusters[i].size() << endl;
-	      MLVector<ItemType> new_centroid;
+	      VectorType new_centroid;
 	      clusters[i].mean(new_centroid);
 	      centroids[i] = new_centroid;
       }
@@ -144,7 +159,7 @@ public:
       for(int i = 0; i < k; i++){
 	      cout << "Checking equivalence" << endl;
 	      float cdist = centroids[i].distance(previous_centroids[i], DIST_TYPE);
-	      if(cdist > .0000001 ){
+	      if(cdist > .000001 ){
 	        cout << "Centroid " << i << " not equivalent to previous centroid." << endl;
 	        cout << "cosine distance: " << cdist << endl;
 	        done = false;
@@ -154,7 +169,7 @@ public:
       if(!done){
 	      //reset clusters
 	      for(int i = 0; i < k; i++){
-	        DataSet<ItemType> temp;
+	        DataSet<VectorType> temp;
 	        clusters[i]=temp;
 	      }
       }
