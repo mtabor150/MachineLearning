@@ -1,0 +1,128 @@
+#ifndef MLVECTOR_H
+#define MLVECTOR_H
+
+#include <cmath>
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+template < class Key,                                    // unordered_map::key_type
+           class T,                                      // unordered_map::mapped_type
+           class Hash = hash<Key>,                       // unordered_map::hasher
+           class Pred = equal_to<Key>,                   // unordered_map::key_equal
+           class Alloc = allocator< pair<const Key,T> >  // unordered_map::allocator_type
+           > 
+           
+class MLVector : public unordered_map<Key, T, Hash, Pred, Alloc>  {
+
+public:
+  
+  MLVector& operator+=(const MLVector& other){
+    for(auto it=other.cbegin(); it!=other.cend(); ++it){
+      (*this)[it->first] += it->second;
+    }
+  }
+  
+  
+  /*function for easy printing of vectors*/
+  void print(const string& header){
+    cout << "===== " << header << " ====="<< endl;
+    int i = 0;
+    for(auto it=(*this).cbegin(); it!=(*this).cend(); ++it){
+      cout << "{" << it->first << ":" << it -> second << "} ";
+      i++;
+      if(i%15 == 0) cout << endl;
+    }
+    cout << endl;
+  }
+  
+  
+  /*dot product divided by product of vector magnitudes*/
+  float cosine_distance(const MLVector& other){
+    float this_magnitude = 0, other_magnitude = 0, this_dot_other = 0;
+    
+    for(auto it=(*this).cbegin(); it!=(*this).cend(); ++it){
+      float value = it->second;
+      this_magnitude += (value*value);
+      if(other.find(it->first) != other.end()){
+	this_dot_other += (value*other.at(it->first));
+      }
+    }
+    
+    for(auto it=other.cbegin(); it!=other.cend(); ++it){
+      float value = it->second;
+      other_magnitude += (value*value);
+    }
+    
+    float cosine = this_dot_other/(sqrt(this_magnitude)*sqrt(other_magnitude));
+    cosine = 1 - cosine;
+    return cosine;
+  }
+  
+  
+  /*absolute difference between like elements*/
+  float l0_distance(const MLVector& other){
+    float l0 = 0;
+    for(auto it=(*this).cbegin(); it!=(*this).cend(); ++it){
+      //take the abs() of the difference of like elements
+      if(other.find(it->first) != other.end()){
+	l0 += abs(it->second-other.at(it->first));
+      }
+    }
+    return l0;
+  }
+  
+  
+  /*manhattan distance - sum of absolute values of differences between elements*/
+  float l1_distance(const MLVector& other){
+    float l1 = 0;
+    for(auto it=(*this).cbegin(); it!=(*this).cend(); ++it){
+      //take the abs() of the difference of like elements
+      if(other.find(it->first) != other.end()){
+	l1 += abs(it->second-other.at(it->first));
+      }
+      //add everything in this thats not in other
+      else l1 += abs(it->second);
+    }
+    
+    //find everything in other thats not in this
+    for(auto it=other.cbegin(); it!=other.cend(); ++it){
+      if((*this).find(it->first) == (*this).end()){
+	l1 += abs(it->second);
+      }
+    }
+    return l1;
+  }
+  
+  
+  /*euclidean distance*/
+  float l2_distance(const MLVector& other){
+    float l2 = 0;
+    for(auto it=(*this).cbegin(); it!=(*this).cend(); ++it){
+      //square the difference of like elements
+      if(other.find(it->first) != other.end()){
+	float value = it->second-other.at(it->first);
+	l2 += (value*value);
+      }
+      //add squared unlike elements
+      else l2 += (it->second*it->second);
+    }
+
+    //find everything in other thats not in this
+    for(auto it=other.cbegin(); it!=other.cend(); ++it){
+      if((*this).find(it->first) == (*this).end()){
+	l2 += (it->second*it->second);
+      }
+    }
+    return sqrt(l2);
+  }
+  
+  /*figure out what this is*/
+  float l_infinity_distance(const MLVector& other){
+    
+  }
+  
+  
+};
+
+#endif
