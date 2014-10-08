@@ -47,7 +47,7 @@ public:
   /* print()
    * function for easy printing of vectors*/
   void print(const string& header = "vector" ){
-    cout << "===== " << header << " ====="<< endl;
+    cout << endl;
     int i = 0;
     for(auto it=(*this).cbegin(); it!=(*this).cend(); ++it){
       cout << "{" << it->first << ":" << it -> second << "} ";
