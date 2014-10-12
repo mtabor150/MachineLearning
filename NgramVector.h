@@ -1,7 +1,13 @@
 #ifndef NGRAMVECTOR_H
 #define NGRAMVECTOR_H
 
-#include <string> 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <queue>
 #include "MLVector.h"
 using namespace std;
 
@@ -66,6 +72,51 @@ public:
     (*this).MLVector::print();
   }
   
+  void to_csv(string directory = "/"){
+    struct stat info;
+    
+    int size = directory.size();
+    if(directory[size-1] != '/')
+      directory.append("/");
+    if(strcmp(_lang.c_str(), "") != 0){
+      directory.append(_lang);
+      directory.append("/");
+    }
+    
+    if(strcmp(_author.c_str(), "") != 0){
+      directory.append(_author);
+      directory.append("/");
+    }
+    
+    if(stat(directory.c_str(), &info) != 0 ){
+      mkdir(directory.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+    }
+    
+    if(strcmp(_id.c_str(), "") != 0){
+      directory.append(_id);
+      
+    }
+    else
+      directory.append("foo");
+    directory.append(".csv");
+    
+    ofstream file(directory);
+    
+    if (file.is_open()){
+      priority_queue<string> heap;
+      
+      file << "Key,Value" << endl;
+      for(auto it=(*this).cbegin(); it!=(*this).cend(); ++it){
+	file << "\"" << it->first << "\"," << it->second << endl;
+      }
+      file.close();
+    }
+    else{
+      cout << "File: " << directory << endl;
+      throw runtime_error("unable to open file");
+    }
+  }
+  
   
   /* splits strings and enters them in the vector
    * works with utf-8 but not other unicode values
@@ -89,7 +140,6 @@ public:
 	  it--;
 	}
       }
-      
       while(it >= begin){
 	(*this)[it] += 1;
 	end--;
