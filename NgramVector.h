@@ -1,14 +1,13 @@
 #ifndef NGRAMVECTOR_H
 #define NGRAMVECTOR_H
 
-#include <sys/types.h>
 #include <sys/stat.h>
-#include <string.h>
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <queue>
+#include "Heap.h"
 #include "MLVector.h"
+
 using namespace std;
 
 
@@ -72,7 +71,8 @@ public:
     (*this).MLVector::print();
   }
   
-  void to_csv(string directory = "/"){
+  
+  void to_tsv(string directory = "/"){
     struct stat info;
     
     int size = directory.size();
@@ -98,16 +98,22 @@ public:
     }
     else
       directory.append("foo");
-    directory.append(".csv");
+    directory.append(".tsv");
     
     ofstream file(directory);
     
     if (file.is_open()){
-      priority_queue<string> heap;
-      
-      file << "Key,Value" << endl;
+      Heap <float, string> freqlist;
       for(auto it=(*this).cbegin(); it!=(*this).cend(); ++it){
-	file << "\"" << it->first << "\"," << it->second << endl;
+	freqlist.insert(it->second, it->first);
+      }
+      
+      file << freqlist.top_data() << "\t" << freqlist.top_value();
+      freqlist.pop();
+      
+      while(!freqlist.empty()){
+	file << endl << freqlist.top_data() << "\t" << freqlist.top_value();
+	freqlist.pop();
       }
       file.close();
     }
