@@ -1,8 +1,13 @@
 #ifndef NGRAMVECTOR_H
 #define NGRAMVECTOR_H
 
-#include <string> 
+#include <sys/stat.h>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include "Heap.h"
 #include "MLVector.h"
+
 using namespace std;
 
 
@@ -67,6 +72,58 @@ public:
   }
   
   
+  void to_file(string directory = "/"){
+    struct stat info;
+    
+    int size = directory.size();
+    if(directory[size-1] != '/')
+      directory.append("/");
+    if(strcmp(_lang.c_str(), "") != 0){
+      directory.append(_lang);
+      directory.append("/");
+    }
+    
+    if(strcmp(_author.c_str(), "") != 0){
+      directory.append(_author);
+      directory.append("/");
+    }
+    
+    if(stat(directory.c_str(), &info) != 0 ){
+      mkdir(directory.c_str(),S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+    }
+    
+    if(strcmp(_id.c_str(), "") != 0){
+      directory.append(_id);
+      
+    }
+    else
+      directory.append("foo");
+    directory.append(".fl");
+    
+    ofstream file(directory);
+    
+    if (file.is_open()){
+      Heap <float, string> freqlist;
+      for(auto it=(*this).cbegin(); it!=(*this).cend(); ++it){
+	freqlist.insert(it->second, it->first);
+      }
+      
+      file << freqlist.top_data() << "\t" << freqlist.top_value();
+      freqlist.pop();
+      
+      while(!freqlist.empty()){
+	file << endl << freqlist.top_data() << "\t" << freqlist.top_value();
+	freqlist.pop();
+      }
+      file.close();
+    }
+    else{
+      cout << "File: " << directory << endl;
+      throw runtime_error("unable to open file");
+    }
+  }
+  
+  
   /* splits strings and enters them in the vector
    * works with utf-8 but not other unicode values
    * look into switching to ICU library
@@ -89,7 +146,6 @@ public:
 	  it--;
 	}
       }
-      
       while(it >= begin){
 	(*this)[it] += 1;
 	end--;

@@ -98,22 +98,22 @@ public:
 	  position = position.right();
       }
       
-	//if leaf delete or has no right child
-//       if(position.isLeaf()||!position.hasRightChild()) {
-// 	deleteAndMoveLeftChildUp(position);
-// 	return;
-//       }
-//       //if no left child
-//       if(!position.hasLeftChild()) {
-// 	deleteAndMoveRightChildUp(position);
-// 	return;
-//       }
+      //if leaf delete or has no right child
+      if(position.isLeaf()||!position.hasRightChild()) {
+	this->deleteAndMoveLeftChildUp(position);
+	return;
+      }
+      //if no left child
+      if(!position.hasLeftChild()) {
+	this->deleteAndMoveRightChildUp(position);
+	return;
+      }
       
       //else find next item in an in order traversal
       typename BinaryTree<ItemType>::Iterator next = position;
       next++;
       *position = *next;
-      deleteAndMoveRightChildUp(next);
+      this->deleteAndMoveRightChildUp(next);
       return;
     }
     
