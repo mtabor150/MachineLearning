@@ -72,7 +72,7 @@ public:
   }
   
   
-  void to_tsv(string directory = "/"){
+  void to_file(string directory = "/"){
     struct stat info;
     
     int size = directory.size();
@@ -98,7 +98,7 @@ public:
     }
     else
       directory.append("foo");
-    directory.append(".tsv");
+    directory.append(".fl");
     
     ofstream file(directory);
     

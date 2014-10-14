@@ -14,10 +14,10 @@ int main(){
   
   
   //ifstream fin("data/test-tweets.txt");
-  //ifstream fin("data/bar-tweets.txt");
-  ifstream fin("data/ht-tweets.txt");
+  ifstream fin("data/bar-tweets.txt");
+  //ifstream fin("data/ht-tweets.txt");
   
-  NgramVector b("ht-tweets","","Haitian",3);
+  NgramVector b("bar-tweets","","Bavarian",3);
   int i = 0;
   while(!fin.eof()){
     string line;
@@ -25,7 +25,7 @@ int main(){
     //cout << line << endl;
     b.input_string(line.substr(line.rfind('\t')+1,line.size()));
   }
-  b.to_tsv("frequency_lists");
+  b.to_file("frequency_lists");
   //b.print();
   
   /*
