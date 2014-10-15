@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cmath>
 #include <unordered_map>
 
 using namespace std;
@@ -14,6 +15,7 @@ class Distribution{
 private:
   unordered_map<string,float>* _dist;
   
+
 public:
   
   Distribution(string filename = ""): _dist(new unordered_map<string,float>){
@@ -40,16 +42,24 @@ public:
     delete _dist;
   }
   
-  float entropy(){}
+  float entropy() const{
+    float entropy = 0;
+    for(unordered_map<string,float>::iterator it = (*_dist).begin(); it != (*_dist).end(); ++it){
+      float prob = it->second;
+      entropy -= prob*log2(prob);
+    }
+    return entropy;
+  }
   
   void add_point(string key, float value){
     (*_dist)[key] = value;
   }
   
-  float info_gain(){}
-  
-  
-  
+  float info_gain(const Distribution& other) const{
+    float ent = entropy(), o_ent = other.entropy();
+    return (ent-o_ent);
+  }
+
 };
 
 #endif

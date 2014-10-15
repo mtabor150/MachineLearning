@@ -14,10 +14,10 @@ int main(){
   
   
   //ifstream fin("data/test-tweets.txt");
-  ifstream fin("data/bar-tweets.txt");
-  //ifstream fin("data/ht-tweets.txt");
+  //ifstream fin("data/bar-tweets.txt");
+  ifstream fin("data/ht-tweets.txt");
   
-  NgramVector b("bar-tweets","","Bavarian",3);
+  NgramVector b("ht-tweets-tri","","Haitian",3);
   int i = 0;
   while(!fin.eof()){
     string line;
