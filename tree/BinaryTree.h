@@ -33,120 +33,120 @@ public:
     class Iterator {
       
       private:
-	Node* _current; 	//pointer to current node
-	BinaryTree* _tree;	//pointer to tree I belong to
+        Node* _current; 	//pointer to current node
+        BinaryTree* _tree;	//pointer to tree I belong to
 	
       public:
-	
-	//constructor for iterator - useful inside class
-	Iterator(Node* c = NULL, BinaryTree* t = NULL) : _current(c) , _tree(t) {}
-	
-	//copy constructor
-	Iterator(const Iterator& other) {
-	  _current = other._current;
-	  _tree = other._tree;
-	}
-	
-	//returns reference to data
-	ItemType& operator*() const {
-	  return _current->_data;
-	}
-	
-	//returns const pointer to data
-	ItemType* operator->() const {
-	  return &(_current->_data);
-	}
-	
-	//Returns an interator to the left child of the iterator
-	Iterator left() {
-	  return Iterator(_current->_left, _tree);
-	}
-	
-	//Returns an interator to the right child of the iterator
-	Iterator right() {
-	  return Iterator(_current->_right, _tree);
-	}
-	
-	//Returns an iterator to the parent
-	Iterator up() {
-	  return Iterator(_current->_parent, _tree);
-	}
-	
-	//Returns true if the iterator points to the root
-	bool isRoot() {
-	  return (_current == _tree->_root);
-	}
-	
-	//Returns true if the iterators point to the same thing
-	bool operator==(const Iterator& other) {
-	  return (_current == other._current && _tree == other._tree);
-	}
-	  
-	//Returns true if the 2 iterators are NOT equal
-	bool operator!=(const Iterator& other) {
-	  return (_current != other._current || _tree != other._tree);
-	}
-	  
-	//Returns true if the iterator has a left child
-	bool hasLeftChild() {
-	  return (_current->_left != NULL);
-	}
-	
-	//Returns true if the iterator has a right child
-	 bool hasRightChild() {
-	   return (_current->_right != NULL);
-	} 
-	
-	//Returns true if the iterator points to a leaf node
-	bool isLeaf() {
-	  return (!hasRightChild() && !hasLeftChild());
-	}
-	
-	//Returns true if the iterator is NULL
-	bool isNULL() {
-	  return (_current == NULL);
-	}
-	
-	//Find the next node in an inorder traversal - prefix
-	Iterator operator++() {
-	  //if there is a right child, go to it, and then left as much as possible
-	  if (hasRightChild()) {
-	    *this = right();
-	    while (hasLeftChild()) 
-	      *this = left();
-	  }
-	  else { //no right child, so go up as long as we're the right child, then up one more time
-	    while (!isRoot() && (up().right() == *this))
-	      *this = up();
-	    *this = up();
-	  }
-	  return *this;  	  
 
-	}
-	
-	//Find the next node in an inorder traversal - postfix
-	Iterator operator++(int dummy) {
-	  Iterator temp = *this;
-	  //if there is a right child, go to it, and then left as much as possible
-	  if (hasRightChild()) {
-	    *this = right();
-	    while (hasLeftChild()) 
-	      *this = left();
-	  }
-	  else { //no right child, so go up as long as we're the right child, then up one more time
-	    while (!isRoot() && (up().right() == *this))
-	      *this = up();
-	    *this = up();
-	  }
-	  return temp;  	 
+        //constructor for iterator - useful inside class
+        Iterator(Node* c = NULL, BinaryTree* t = NULL) : _current(c) , _tree(t) {}
 
-	}
-	  
-	friend class BinaryTree;
-	  
-    }; //end of iterator class
+        //copy constructor
+        Iterator(const Iterator& other) {
+          _current = other._current;
+          _tree = other._tree;
+        }
+
+        //returns reference to data
+        ItemType& operator*() const {
+          return _current->_data;
+        }
+
+        //returns const pointer to data
+        ItemType* operator->() const {
+          return &(_current->_data);
+        }
+
+        //Returns an interator to the left child of the iterator
+        Iterator left() {
+          return Iterator(_current->_left, _tree);
+        }
+
+        //Returns an interator to the right child of the iterator
+        Iterator right() {
+          return Iterator(_current->_right, _tree);
+        }
+
+        //Returns an iterator to the parent
+        Iterator up() {
+          return Iterator(_current->_parent, _tree);
+        }
+
+        //Returns true if the iterator points to the root
+        bool isRoot() {
+          return (_current == _tree->_root);
+        }
+
+        //Returns true if the iterators point to the same thing
+        bool operator==(const Iterator& other) {
+          return (_current == other._current && _tree == other._tree);
+        }
+          
+        //Returns true if the 2 iterators are NOT equal
+        bool operator!=(const Iterator& other) {
+          return (_current != other._current || _tree != other._tree);
+        }
+          
+        //Returns true if the iterator has a left child
+        bool hasLeftChild() {
+          return (_current->_left != NULL);
+        }
+
+        //Returns true if the iterator has a right child
+         bool hasRightChild() {
+           return (_current->_right != NULL);
+        } 
+
+        //Returns true if the iterator points to a leaf node
+        bool isLeaf() {
+          return (!hasRightChild() && !hasLeftChild());
+        }
+
+        //Returns true if the iterator is NULL
+        bool isNULL() {
+          return (_current == NULL);
+        }
+
+        //Find the next node in an inorder traversal - prefix
+        Iterator operator++() {
+          //if there is a right child, go to it, and then left as much as possible
+          if (hasRightChild()) {
+            *this = right();
+            while (hasLeftChild()) 
+              *this = left();
+          }
+          else { //no right child, so go up as long as we're the right child, then up one more time
+            while (!isRoot() && (up().right() == *this))
+              *this = up();
+            *this = up();
+          }
+          return *this;  	  
+
+        }
+
+        //Find the next node in an inorder traversal - postfix
+        Iterator operator++(int dummy) {
+          Iterator temp = *this;
+          //if there is a right child, go to it, and then left as much as possible
+          if (hasRightChild()) {
+            *this = right();
+            while (hasLeftChild()) 
+              *this = left();
+          }
+          else { //no right child, so go up as long as we're the right child, then up one more time
+            while (!isRoot() && (up().right() == *this))
+              *this = up();
+            *this = up();
+          }
+          return temp;  	 
+
+        }
+          
+        friend class BinaryTree;
+          
+}; //end of iterator class
     
-private:
+protected:
 
     int _size;  	//size of binary tree
     Node* _root;	//pointer to root node in binary tree
@@ -185,13 +185,13 @@ protected:
       
       //recursively create left subtree
       if (iter.hasLeftChild()) {
-	newtree -> _left = _duplicate(iter.left());
-	newtree->_left->_parent = newtree;
+        newtree -> _left = _duplicate(iter.left());
+        newtree->_left->_parent = newtree;
       }
       if (iter.hasRightChild()) {
-	//recursively create right subtree
-	newtree -> _right = _duplicate(iter.right());
-	newtree->_right->_parent = newtree;
+        //recursively create right subtree
+        newtree -> _right = _duplicate(iter.right());
+        newtree->_right->_parent = newtree;
       }
       return newtree;
     }
@@ -245,13 +245,13 @@ public:
     iter._current->_aux = value;
   }
   
-  void createRoot(const ItemType& value) {
+  void createRoot(const ItemType& value, int aux = 0) {
     if (_size != 0)
       throw runtime_error("root already exists");
     _root = new Node(value);
     _size = 1;
+    _root->_aux = aux;
   }
-  
   
   /** function to insert new data as the right child of a specified node
    * If the right child already exists, delete it (and its subtree)
@@ -307,11 +307,11 @@ public:
     //update the parent node
     if (position != _root) {
       if (position->_parent->_left == position) {
-	//position is the left child
-	position->_parent->_left = position->_left;
+        //position is the left child
+        position->_parent->_left = position->_left;
       }
       else
-	position->_parent->_right = position->_left;
+        position->_parent->_right = position->_left;
     }
     else
       _root = position->_left;
@@ -322,16 +322,16 @@ public:
     _size--;
   }
 
-    /**
-     *  Delete a node from the tree advancing its right child.
-     *
-     *  The right child of the node will take the place of the specified
-     *  node.  The node and its left subtree will be deleted.
-     *
-     *  Input parameter location: an iterator referencing the node to be deleted.
-     */
-    void deleteAndMoveRightChildUp(Iterator location) {
-    Node* position = location._current;
+  /**
+   *  Delete a node from the tree advancing its right child.
+   *
+   *  The right child of the node will take the place of the specified
+   *  node.  The node and its left subtree will be deleted.
+   *
+   *  Input parameter location: an iterator referencing the node to be deleted.
+   */
+  void deleteAndMoveRightChildUp(Iterator location) {
+  Node* position = location._current;
     
     //update my right subtree's parent
     if (position->_right != NULL)
@@ -340,11 +340,11 @@ public:
     //update the parent node (if not the root)
     if (position != _root) {
       if (position->_parent->_left == position) {
-	//position is the left child
-	position->_parent->_left = position->_right;
+        //position is the left child
+        position->_parent->_left = position->_right;
       }
       else
-	position->_parent->_right = position->_right;
+        position->_parent->_right = position->_right;
     }
     else
       _root = position->_right;
@@ -353,76 +353,69 @@ public:
     _recursivelyDelete(location.left());
     delete position;
     _size--;
-
-    }
+  }
     
-    /** pivot function
-     * input: iterator
-     * swap position of input iterator and its parent
-     */
-    void pivot(Iterator location) {
-      if (location.isRoot())
-	throw runtime_error("Can't pivot a root");
-      if (location.isNULL())
-	throw runtime_error("Can't pivot a null position");
-      
-      //make temporary pointers
-      Node* a = location._current;
-      Node* b = a->_parent;
-      
-      if (b == _root) {
-	a->_parent = NULL;
-	_root = a;
-      }
-      else {     
-	Node* gp = b->_parent;
-	if (b == gp->_right) 
-	  gp ->_right = a;
-	else
-	  gp ->_left = a;
-	a->_parent = gp;
-      }
+  /** pivot function
+   * input: iterator
+   * swap position of input iterator and its parent
+   */
+  void pivot(Iterator location) {
+    if (location.isRoot())
+      throw runtime_error("Can't pivot a root");
+    if (location.isNULL())
+      throw runtime_error("Can't pivot a null position");
+    
+    //make temporary pointers
+    Node* a = location._current;
+    Node* b = a->_parent;
+    
+    if (b == _root) {
+      a->_parent = NULL;
+      _root = a;
+    }
+    else {     
+      Node* gp = b->_parent;
+      if (b == gp->_right) 
+        gp ->_right = a;
+      else
+        gp ->_left = a;
+      a->_parent = gp;
+    }
 
-      
-      //determine if child is right or left
-      if (a == b->_left) {
-	//left child, so we can isolate t1,t2, and t3
-	Node* t2 = a->_right;
-	
-	a->_right = b;
-	b->_parent = a;
-	
-	//fix t2
-	b->_left = t2;
-	if (t2 != NULL)
-	  t2->_parent = b;
-      }
-      else {
-	
-	Node* t2 = a->_left;
-	
-	a->_left = b;
-	b->_parent = a;
-	
-	b->_right = t2;
-	if (t2 != NULL)
-	  t2->_parent = b;
-      }
-      
+    
+    //determine if child is right or left
+    if (a == b->_left) {
+      //left child, so we can isolate t1,t2, and t3
+      Node* t2 = a->_right;
 
-	  
-    } //end _pivot
+      a->_right = b;
+      b->_parent = a;
+
+      //fix t2
+      b->_left = t2;
+      if (t2 != NULL)
+        t2->_parent = b;
+    }
+    else {
+
+      Node* t2 = a->_left;
+
+      a->_left = b;
+      b->_parent = a;
+
+      b->_right = t2;
+      if (t2 != NULL)
+        t2->_parent = b;
+    }
+  } //end _pivot
       
-     
-  
-  
-  
-  
-      /**
-      *  Draw function declaration
-      * (You can ignore this one!)
-      */
-    void draw(string name, Iterator* iter=0, bool pause=false);
+  /**
+  *  Draw function declaration
+  * (You can ignore this one!)
+  */
+  void draw(string name, Iterator* iter=0, bool pause=false);
+
+
 };
 
 

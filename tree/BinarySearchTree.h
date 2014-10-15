@@ -25,30 +25,30 @@ public:
       typename BinaryTree<ItemType>::Iterator position = BinaryTree<ItemType>::root();
       bool done = false;
       while (!done) { 
-	if (*position < element) {
-	  //insert to right
-	  if (position.hasRightChild())
-	    position = position.right();
-	  else
-	    done = true;
-	}
-	else {
-	  //insert to left
-	  if (position.hasLeftChild())
-	    position = position.left();
-	  else
-	    done = true;
-	}
+        if (*position < element) {
+          //insert to right
+          if (position.hasRightChild())
+            position = position.right();
+          else
+            done = true;
+        }
+        else {
+          //insert to left
+          if (position.hasLeftChild())
+            position = position.left();
+          else
+            done = true;
+        }
       } //end while
       
       //Now, position is place to insert below
       if (element <= *position) {
-	BinaryTree<ItemType>::insertAsLeftChild(element,position);
-	position = position.left();
+        BinaryTree<ItemType>::insertAsLeftChild(element,position);
+        position = position.left();
       }
       else {
-	BinaryTree<ItemType>::insertAsRightChild(element,position);
-	position=position.right();
+        BinaryTree<ItemType>::insertAsRightChild(element,position);
+        position=position.right();
       }
       return position;
       
@@ -66,17 +66,16 @@ public:
     while (!position.isNULL()) {
     
       if (*position == value)
-	return true;
+        return true;
       else
-	if (*position > value)
-	  position = position.left();
-	else
-	  position = position.right();
+        if (*position > value)
+          position = position.left();
+        else
+          position = position.right();
     }
-    return false;
-    
+    return false; 
   }
-  
+
   /** 
    * Function to remove an element from the tree
    */
@@ -92,21 +91,21 @@ public:
     else {
       typename BinaryTree<ItemType>::Iterator position = BinaryTree<ItemType>::root();
       while(*position != element){
-	if (*position > element)
-	  position = position.left();
-	else
-	  position = position.right();
+        if (*position > element)
+          position = position.left();
+        else
+          position = position.right();
       }
       
       //if leaf delete or has no right child
       if(position.isLeaf()||!position.hasRightChild()) {
-	this->deleteAndMoveLeftChildUp(position);
-	return;
+        this->deleteAndMoveLeftChildUp(position);
+        return;
       }
       //if no left child
       if(!position.hasLeftChild()) {
-	this->deleteAndMoveRightChildUp(position);
-	return;
+        this->deleteAndMoveRightChildUp(position);
+        return;
       }
       
       //else find next item in an in order traversal
@@ -116,10 +115,7 @@ public:
       this->deleteAndMoveRightChildUp(next);
       return;
     }
-    
   }
-  
-  
 }; // end BinarySearchTree.h
 
 
