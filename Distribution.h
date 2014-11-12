@@ -23,17 +23,17 @@ public:
       int total = 0;
       ifstream fin(filename.c_str());
       while(!fin.eof()){
-	string line, key;
-	int val = 0;
-	getline(fin, line);
-	key = line.substr(0,line.find('\t'));
-	val = atoi(line.substr(line.find('\t')+1, line.size()).c_str());
-	(*_dist)[key] = val;
-	total+=val;
+        string line, key;
+        int val = 0;
+        getline(fin, line);
+        key = line.substr(0,line.find('\t'));
+        val = atoi(line.substr(line.find('\t')+1, line.size()).c_str());
+        (*_dist)[key] = val;
+        total+=val;
       }
       
       for(unordered_map<string,float>::iterator it = (*_dist).begin(); it != (*_dist).end(); ++it){
-	it->second /= total;
+        it->second /= total;
       }
     }
   }
@@ -58,6 +58,11 @@ public:
   float info_gain(const Distribution& other) const{
     float ent = entropy(), o_ent = other.entropy();
     return (ent-o_ent);
+  }
+
+  Distribution all_info_gain()
+  {
+
   }
 
 };

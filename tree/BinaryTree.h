@@ -172,7 +172,6 @@ protected:
   
   }
 
-  
   /**function to recursively! duplicate a subtree
   * Input parameter: node pointing to subtree that should be copied
   * Return a pointer to the root of the duplicate tree
@@ -198,6 +197,12 @@ protected:
     else
       return 0;
 
+  }
+
+  void setSubTrees(BinaryTree& right, BinaryTree& left)
+  {
+    this->_root->_right = right._duplicate(right.root());
+    this->_root->_left = left._duplicate(left.root());
   }
     
 public:
