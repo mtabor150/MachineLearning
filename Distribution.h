@@ -60,11 +60,6 @@ public:
     return (ent-o_ent);
   }
 
-  Distribution all_info_gain()
-  {
-
-  }
-
 };
 
 #endif

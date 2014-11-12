@@ -118,9 +118,9 @@ int main()
     v.push_back(it->second);
   }
   //v.print();
-  NeighborJoiningTree<string> second_tree;
-  second_tree.set_data(v);
-  second_tree.createNJTreeFromDataSet("ht-new-NJ");
+  NeighborJoiningTree<string> first_tree;
+  first_tree.set_data(v);
+  first_tree.createNJTreeFromDataSet("ht-users-new");
 /*
   NgramVector vect1 = NgramVector("1", "1", "1", 1);
   NgramVector vect2 = NgramVector("2", "2", "2", 1);
