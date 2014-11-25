@@ -3,6 +3,7 @@
 
 #include <sys/stat.h>
 #include <string>
+#include <string.h>
 #include <iostream>
 #include <fstream>
 #include "Heap.h"
@@ -44,22 +45,22 @@ public:
   
   
   /*getters*/
-  string get_id(const string& id){
+  string get_id(){
     return _id;
   }
   
   
-  string get_author(const string& author){
+  string get_author(){
     return _author;
   }
   
   
-  string get_lang(const string& lang){
+  string get_lang(){
     return _lang;
   }
   
   
-  int get_keyLength(int k){
+  int get_keyLength(){
     return _keyLength;
   }
   
