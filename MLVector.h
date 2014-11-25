@@ -4,6 +4,7 @@
 #include <cmath>
 #include <iostream>
 #include <unordered_map>
+#include <vector>
 using namespace std;
 
 enum dist_type
@@ -23,13 +24,87 @@ template < class Key,                                    // unordered_map::key_t
            > 
            
 class MLVector : public unordered_map<Key, T, Hash, Pred, Alloc>  {
-
+private:
+  float _total;
+  int _N;
+  bool _total_has_changed = true;
+  bool _calculating_N = true;
+  vector<bool> _calculated_N_i;
+  map<int,int> _N_i;
+  
 public:
+  
+  MLVector() : _total(0) {}
+  
+  //gets _total
+  double get_total()
+  {
+    if(!_total_has_changed)
+    {
+      //cout << "b" << endl;
+      return _total;
+    }
+    //cout << "c" << endl;
+    _total = 0;
+    for(auto it= this->begin(); it!=this->end(); it++)
+    {
+      _total += it->second;
+    }
+    _total_has_changed = false;
+    if(_calculating_N)
+    {
+      _N = _total;
+      _calculating_N = false;
+    }
+    return _total;
+  }
+  
+  //gets the total occurences
+  double get_N()
+  {
+    if(_calculating_N)
+    {
+      //cout << "a" << endl;
+      get_total();
+    }
+    return _N;
+  }
+  
+  void set_total_has_changed_true()
+  {
+    _total_has_changed = true;
+  }
+  
+  //return total number of elements that occur i times
+  int get_N_i(int i)
+  {
+    if(_N_i.find(i) != _N_i.end())
+    {
+      return _N_i[i];
+    }
+    int ret_val = 0;
+    for(auto it=this->begin(); it!= this->end(); it++)
+    {
+      if(it->second == i)
+      {
+	ret_val++;
+      }
+    }
+    _N_i[i]=ret_val;
+    return ret_val;
+  }
   
   /* operator+=() */
   MLVector& operator+=(const MLVector& other){
     for(auto it=other.cbegin(); it!=other.cend(); ++it){
-      (*this)[it->first] += it->second;
+      if(this->find(it->first) != this->end())
+      {
+	(*this)[it->first] += it->second;
+      }
+      else
+      {
+	(*this)[it->first] = it->second;
+      }
     }
   }
   /* end operator+=() */
@@ -42,7 +117,6 @@ public:
     }
   }
   /* end operator/=() */
-
   
   /* print()
    * function for easy printing of vectors*/

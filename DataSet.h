@@ -7,6 +7,7 @@
 #include <vector>
 #include "MLVector.h"
 #include "NgramVector.h"
+
 using namespace std;
 
 #define DIST_TYPE COS_DIST
@@ -14,8 +15,24 @@ using namespace std;
 template <class VectorType = NgramVector>
 
 class DataSet : public vector<VectorType> {
+  
+protected:
+  //universal vector is all occurrences
+  VectorType _universe;
+  
+  bool did_set_universe = false;
+  bool did_smooth = false;
 
 public:
+  
+  void push_vector_back(VectorType& vector)
+  {
+    //cout << "x" << endl;
+    did_set_universe = false;
+    did_smooth = false;
+    this->push_back(vector);
+    //cout << "y" << endl;
+  }
   
   /* operator+=() */
   DataSet& operator+=(const DataSet& other){
@@ -26,6 +43,91 @@ public:
   }
   /* end operator+=() */
   
+  //smooth
+  //TODO: implement less naive smoothing
+  //      for now just adds one half to unseen values
+  void smooth()
+  {
+    if(did_smooth)
+    {
+      return;
+    }
+    //remove any non-whole values
+    for(auto it=_universe.begin(); it!= _universe.end(); )
+    {
+      if(it->second < 1.0)
+      {
+	//cout << "a" << endl;
+	_universe.erase(it++);
+	//cout << "b" << endl;
+      }
+      else
+      {
+	it++;
+      }
+    }
+    for(auto it=_universe.begin(); it!=_universe.end(); it++)
+    {
+      for(int i=0; i<this->size(); i++)
+      {
+	if((*this)[i].find(it->first) == (*this)[i].end())
+	{
+	  (*this)[i][it->first] = (*this)[i].get_N_i(1)/(*this)[i].get_N();
+	}
+      }
+    }
+    //set all _N_has_changed flags to true
+    for(int i=0; i<this->size(); i++)
+      {
+	 (*this)[i].set_total_has_changed_true();
+      }
+    did_smooth= true;
+  }
+  
+  void set_universe()
+  {
+    if(did_set_universe)
+    {
+      return;
+    }
+    //start with fresh Vector
+    _universe.erase(_universe.begin(), _universe.end());
+    
+    for(int i=0; i<this->size(); i++)
+    {
+      _universe += (*this)[i];
+    }
+    did_set_universe = true;
+  }
+  
+  VectorType& get_universe()
+  {
+    return _universe;
+  }
+  
+  void print_universe()
+  {
+    _universe.print();
+  }
+  
+  
+  //get the value of the key in universe
+  double get_universe_value(string key)
+  {
+    if(_universe.find(key) != _universe.end())
+    {
+      return _universe[key];
+    }
+    else
+    {
+      return 0.0;
+    }
+  }
+  
+  double get_universe_total()
+  {
+    return (double)_universe.get_total();
+  }
 
   /* print() */
   void print(){
