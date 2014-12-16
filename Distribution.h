@@ -28,7 +28,7 @@ public:
     return (*_dist)[key];
   }
   
-  bool check_dist_sum()
+  bool check_dist_sum(string extra_message = "")
   {
     double total;
     for(auto it = _dist->begin(); it != _dist->end(); it++)
@@ -47,8 +47,9 @@ public:
       cout << "----------invalid probability distribution: distribution adds up to " << total << "----------"<< endl;
       for(auto it=_dist->begin(); it!=_dist->end(); it++)
       {
-	cout << it->first << ": " << it->second << endl;
+	      cout << it->first << ": " << it->second << endl;
       }
+      cout << "extra message: " << extra_message << endl;
       return false;
     }
   }
@@ -147,20 +148,20 @@ public:
     {
       if(dataset[i].get_author()!="test")
       {
-	int size = dataset.size();
-	
-	//Distribution i_dist;
-	//i_dist.dist_from_mlvector(dataset[i]);
-	double p_w_c = dataset[i][key]/dataset[i].get_total();//i_dist.get_prob(key);
-	p_w += p_w_c;
-	
-	//p_w_c is p(w|c) and p_w is p(w)
-	//p(w|c) should come from a distribution made from dataset[i]
-	//p(w) should come from all the distributions added together divided by the number of distributions
-	double probability = p_w_c;// * prob_even / p_w;
-	
-	//double probability = (((double)dataset[i][key] / (double)dataset[i].get_total() )*prob_even) / ((double)dataset.get_universe_value(key)/(double)dataset.get_universe_total());
-	(*_dist)[dataset[i].get_author()] = probability;
+      	int size = dataset.size();
+      	
+      	//Distribution i_dist;
+      	//i_dist.dist_from_mlvector(dataset[i]);
+      	double p_w_c = dataset[i][key]/dataset[i].get_total();//i_dist.get_prob(key);
+      	p_w += p_w_c;
+      	
+      	//p_w_c is p(w|c) and p_w is p(w)
+      	//p(w|c) should come from a distribution made from dataset[i]
+      	//p(w) should come from all the distributions added together divided by the number of distributions
+      	double probability = p_w_c;// * prob_even / p_w;
+      	
+      	//double probability = (((double)dataset[i][key] / (double)dataset[i].get_total() )*prob_even) / ((double)dataset.get_universe_value(key)/(double)dataset.get_universe_total());
+      	(*_dist)[dataset[i].get_author()] = probability;
       }
     }
     
@@ -170,7 +171,7 @@ public:
     }
     
     //verify that the probability distribution adds up to one
-    check_dist_sum();
+    check_dist_sum(key);
   }
     
   

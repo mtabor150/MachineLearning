@@ -122,17 +122,17 @@ int main(){
       
       for(int i=0; i<test.size(); i++)
       {
-	iterations++;
-	cout << "------------------------------" << endl;
-	string expected = test[i].get_lang();
-	cout << "exptected: " << expected << endl;
-	string return_val = classifier.naive_classify(test[i]);
-	cout << "actual:    " << return_val << endl;
-	if(expected != return_val)
-	{
-	  cout << "incorrectly guessed value" << endl;
-	  num_wrong++;
-	}
+      	iterations++;
+      	cout << "------------------------------" << endl;
+      	string expected = test[i].get_lang();
+      	cout << "exptected: " << expected << endl;
+      	string return_val = classifier.naive_classify(test[i]);
+      	cout << "actual:    " << return_val << endl;
+      	if(expected != return_val)
+      	{
+      	  cout << "incorrectly guessed value" << endl;
+      	  num_wrong++;
+      	}
       }
       
       cout << "number wrong for " << iterations << " iterations = " << num_wrong << endl;

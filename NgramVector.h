@@ -71,6 +71,14 @@ public:
     cout << "ID: " << _id << "     Author: " << _author << "     Language: " << _lang << "     Key length: " << _keyLength << endl;
     (*this).MLVector::print();
   }
+
+  void print_ordered(){
+    cout << endl;
+    cout << "=================================================================" << endl;  
+    cout << "ID: " << _id << "     Author: " << _author << "     Language: " << _lang << "     Key length: " << _keyLength << endl;
+    
+    (*this).MLVector::print_ordered();
+  }
   
   
   void to_file(string directory = "/"){
@@ -123,6 +131,11 @@ public:
       throw runtime_error("unable to open file");
     }
   }
+
+  NgramVector& input_string_to_words(const string& text)
+  {
+    
+  }
   
   
   /* splits strings and enters them in the vector
@@ -142,24 +155,24 @@ public:
     
     else{
       for(int i = 0; i < _keyLength; i++){
-	it--;
-	while(it[0] < -64){
-	  it--;
-	}
+      	it--;
+      	while(it[0] < -64){
+      	  it--;
+      	}
       }
       while(it >= begin){
-	(*this)[it] += 1;
-	end--;
-	while(end[0] < -64){
-	    end[0] = '\0';
-	    end--;
-	}
-	end[0] = '\0';
-	
-	it--;
-	while(it[0] < -64){
-	  it--;
-	}
+      	(*this)[it] += 1;
+      	end--;
+      	while(end[0] < -64){
+    	    end[0] = '\0';
+    	    end--;
+    	  }
+      	end[0] = '\0';
+      	
+      	it--;
+      	while(it[0] < -64){
+      	  it--;
+      	}
       }
     }
   }

@@ -57,29 +57,29 @@ public:
     {
       if(it->second < 1.0)
       {
-	//cout << "a" << endl;
-	_universe.erase(it++);
-	//cout << "b" << endl;
+      	//cout << "a" << endl;
+      	_universe.erase(it++);
+      	//cout << "b" << endl;
       }
       else
       {
-	it++;
+	      it++;
       }
     }
     for(auto it=_universe.begin(); it!=_universe.end(); it++)
     {
       for(int i=0; i<this->size(); i++)
       {
-	if((*this)[i].find(it->first) == (*this)[i].end())
-	{
-	  (*this)[i][it->first] = (*this)[i].get_N_i(1)/(*this)[i].get_N();
-	}
+      	if((*this)[i].find(it->first) == (*this)[i].end())
+      	{
+      	  (*this)[i][it->first] = (*this)[i].get_N_i(1)/(*this)[i].get_N();
+      	}
       }
     }
     //set all _N_has_changed flags to true
     for(int i=0; i<this->size(); i++)
       {
-	 (*this)[i].set_total_has_changed_true();
+	      (*this)[i].set_total_has_changed_true();
       }
     did_smooth= true;
   }
@@ -103,6 +103,18 @@ public:
   VectorType& get_universe()
   {
     return _universe;
+  }
+
+  bool in_universe(string str)
+  {
+    if(_universe.find(str) == _universe.end())
+    {
+      return false;
+    }
+    else
+    {
+      return true;
+    }
   }
   
   void print_universe()

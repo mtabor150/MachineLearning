@@ -7,6 +7,7 @@
 #include <limits>
 #include <vector>
 #include <map>
+#include <unordered_map>
 #include <cmath>
 #include "Heap.h"
 #include "DataSet.h"
@@ -15,13 +16,15 @@
 using namespace std;
 
 #define DIST_TYPE COS_DIST
+
+#define DEBUGGING false
          
 template <class VectorType = NgramVector>
 
 class ClassifiedDataSet : public DataSet<VectorType> {
   
 private:
-  map<string, double> _info_gain_map;
+  unordered_map<string, double> _info_gain_map;
   
   bool adjusted_info_gain = false;
 
@@ -53,16 +56,56 @@ public:
       _info_gain_map[it->first] = info_gain/all_entropy;
       //cout << "info gain for " << it->first << ": " << info_gain << endl;
     }
-    cout << "all_entropy: " << all_entropy << endl;
+    if(DEBUGGING)
+    {
+      cout << "all_entropy: " << all_entropy << endl;
+    }
   }
   
   bool key_in_info_gain(string key)
   {
     if(_info_gain_map.find(key) == _info_gain_map.end())
     {
-      return false;
+      return true;
     }
-    return true;
+    return false;
+  }
+
+  double get_info_gain(string key)
+  {
+    if(_info_gain_map.find(key) != _info_gain_map.end())
+    {
+      return _info_gain_map[key];
+    }
+    else
+    {
+      return 0.0;
+    }
+  }
+
+  //removes all
+  void remove_all_but_top_from_infogain(int top)
+  {
+    Heap<double,string> myheap;
+    //remove all but top CEILING values from info_gain
+    for(auto it=_info_gain_map.begin(); it!=_info_gain_map.end(); it++)
+    {
+      myheap.insert(it->second, it->first);
+    }
+    
+    _info_gain_map.erase(_info_gain_map.begin(), _info_gain_map.end());
+    
+    for(int i=0; i<top; i++)
+    {
+      if(DEBUGGING)
+      {
+       cout << myheap.top_data() << " " << myheap.top_value() << endl;
+      }
+      _info_gain_map[myheap.top_data()] = myheap.top_value();
+      myheap.pop();
+    }
+      
+    
   }
   
   //subtract sub info gain from main info gain
@@ -80,29 +123,14 @@ public:
       //iterate through class_map to subtract sub-info gain for each classified data set
       for(auto it2=class_map.begin(); it2!=class_map.end(); it2++)
       {
-	if(it2->second.key_in_info_gain(key))
-	{
-	  it->second -= it2->second._info_gain_map[key];
-	}
+    	if(it2->second.key_in_info_gain(key))
+    	{
+    	  it->second -= it2->second._info_gain_map[key];
+    	}
       }
     }
-    
-    Heap<double,string> myheap;
-    //remove all but top CEILING values from info_gain
-    for(auto it=_info_gain_map.begin(); it!=_info_gain_map.end(); it++)
-    {
-      myheap.insert(it->second, it->first);
-    }
-    
-    _info_gain_map.erase(_info_gain_map.begin(), _info_gain_map.end());
-    
-    for(int i=0; i<ceiling; i++)
-    {
-       cout << myheap.top_data() << " " << myheap.top_value() << endl;
-       _info_gain_map[myheap.top_data()] = myheap.top_value();
-       myheap.pop();
-    }
-      
+    remove_all_but_top_from_infogain(ceiling);
+
     adjusted_info_gain = true;
   }
   
