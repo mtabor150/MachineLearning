@@ -1,0 +1,32 @@
+
+Is i réimse na rialaitheoirí is mó atáimse gníomhach. Tá nodaireacht fadbhunaithe ann don na cainníochtaí a bhíonn idir chamán agam - sruth leictreach i, voltais u, luas v agus rl.
+
+Tá nodaireacht ann do na príomhchineál athróg chomh maith. San léaráid thuas, tá an gnath leagan amach ar chóras den cineál a bhíonn plé agam leis.
+
+Úsáidtear "W" don luach tagartha - an luach an mian linn a bheith ag an luach thomhaiste "X". Cuirtear an earráid "E" arbh ionann é agus W lúide X isteach san rialaitheoir ar mhaith leis an luach ar "Y", an t-athróg ionramháilte a ríomh. Má bhíonn an córas deartha i gceart, beidh tionchar ag "Y" ar an gléasra a fhágann go laghdófar "E".
+
+Is ar ghnás ina bhfuil trí chuid is mó atá cleachtadh agamsa air:
+Réimír a chuireann an cineál in iúl, cur síos ar an athróg, agus iarmhír roghnach a chuireann cáilíocht breise a bhaineann leis an athróg in iúl.
+
+Mar shampla; XU_Motor_Avg : an meán voltais san inneall; WI_Motor: an sruth atá de dhíth san inneall, agus mar sin de.
+
+
+------------------------------------------
+
+Scéilín: Bhí gnás dá leithéid leagtha síos againn, agus cúram ar dhuine áirithe é chuir i feidhm.
+Mhol muid na ceannlitreacha "I" agus "O" a sheachaint in ainmneacha, de bharr an baol a bheith ann go léifí mar "1" agus "0" iad. Bhí muid aontaithe air 3 litir don iarmhír cáilíochta.
+
+Anois, bhí cailíocht de dhíth d'uimhreacha choimpléascacha, nó le bheith beacht don gcuid fíor agus samhaileatch den uimhir (a + jb) nuair is ionann "j" agus fréamh cearnach -1.
+
+Anois, tá nodaireacht fadbhunaithe sa Mhatamaitic don a léithéid: "Re" agus "Im".
+
+Ach ba Ghearmánach a bhí ag obair san Eilvéis mo dhuine. Chuir sé na rialacha a mhol muid i bhfeidhm go docht, agus mhol "Rea" agus "Mgn" (toisc cosc a bheith a "I" agus 3 litir a bheith de dhíth).
+
+Sin sampla de cuir i bhfeidhm místuama. Ar amharaí an tsaoil d'éirigh linn cuir ina luí air go raibh éisceacht ciallmhar sa chás seo. Ach ní raibh sé simplí!
+
+
+------------------------------------------
+
+Notá Teangain: Is sa Ghearmáin a chuir mise tús le mo slí gairme. Tá gearmáinís beacht ar W (Sollwert), X (Istwert) agus Y (Stellwert).
+
+

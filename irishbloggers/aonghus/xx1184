@@ -1,0 +1,16 @@
+||1184||
+Sa bharr an mo ghnáth botúin gramadaí, rinne mé meancóg eile thíos
+
+Scríobh mé
+"Tá luach 0x101B = 4123 ag c buailte san córas Unicode (Ċ)."
+
+D'aimsigh Kevin an botún
+Ar an gcéad dul síos, 0x010B ba chirte dom scríobh.
+Ar an dara dul síos, tá U + 0x010A ar ceannlitir C buailte, agus U + 0x010B ar an litir bheag.
+
+Ní bheadh ach dhá bheart de dhíth chun iad sin a ionchodú.
+
+Seans go leasóidh mé an t-alt síos, ach deis a fháil.
+Tá an nasc age baile mírialta faoi láthair.
+
+

@@ -1,0 +1,32 @@
+||1238||
+Léitear foinse clár ríomhaireachta i bhfad níos minice ná má a scríobhtar an chód.
+
+Go deimhin, níl i gcód ach cumarsáid. Ar an leibhéal simplí, leis an ríomhaire. Ach ní hé sin an gné is tábhachtaí. Ní bheidh aon doiléire san comhad dénártha a thiomáinfidh an ríomhaire. Ach ní gá go mbainfear amach aidhm an ríomhchláraitheora!
+
+Mar sin, is gá go mbeadh an cód inléite; ag an ríomhchláraitheoir féin, ag an foireann profa, agus ach go hairithe ag an foireann cothabhála.
+
+Mar is gnách, siad na mionrudaí is tábhachtaí:
+
+Is féidir leithéidí 
+Másmóafábnácfáddéaneésinnódéanf a scríobh agus beidh clár bhailí agat. Ach is féidir é scríobh ar bhealach i bhfad níos inléite le lúibíní agus spás bhán:
+
+
+Más mó (a fá b) ná (c fá d)
+ dean e
+é sin nó
+ déan f
+
+Is é an gnáth nós ná
+
+ * Línte cód a bhfuil baint acu le chéile a scaradh ó línte eile le líne folamh. i. Altanna a úsáid, mar a bheadh in ábhar scríofa.
+ * Feidhm a bhaint as bearnú chun an leibhéal feidhme a chuir in iúl.
+
+ * Spás a fhágáil thart ar oibreoirí dénártha (*, /,+,- agus rl)
+Ach fainic má bhaineann tú feidhm as táib chun bearnú a dhéanamh. (Comhartha ASCII 0x09 de réir an tsean reacht). Ní gá go mbeadh comhionann an líon spásanna i gceist le táb ar chóras dhuine eile. Mar sin, is fearr táb a sheachaint, nó ar a laghad, feidhm a bhaint as eagarthóir a thiontaíonn táib go líon airithe spásanna agus an comhad a shábháil.
+Má déantar faillí i rud mar seo, beidh an clár a bhí leagtha amach go gleoite, dar leat, ina ghiobail doléite dar leis an té a thagann i do dhiaidh!
+
+Níl i spás bán agus lúibíní ach cuid den scéal. Agus i leor sin de racht anocht.
+
+Tá léargas chuimsitheach ar conas praiseach cheart a dhéanamh anseo
+
+

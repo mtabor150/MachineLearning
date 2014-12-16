@@ -1,0 +1,13 @@
+Tá alt ag Danny O'Brien faoi Processing, córas ríomhchláraithe do ealaíontóirí, san Times inniu. Bhain sé feidhm ann as an nath i dteideal an mhír seo. Nath feiliúnach atá ann.
+
+Tá léargas mhaith san alt seo [PDF!], ar tháinig mé air roinnt blianta ó shin agus mé ag línseoireacht, ar an meon ar leith atá de dhíth ar ríomhchláraitheoir. Ní mór an fadhb atá le leigheas a bhriseadh síos i mion agus mion-mion chéimeanna. Aigne ar leith atá de dhíth do sin! Righneas agus smacht. Ansin, caithfear a bheith in inmhe na mion-chéimeanna ar fad  a shamhlú le chéile in aon iomlán amháin. Sin dúshlán, nuair atá taighde ann a léiríonn nach bhfuil ar chumas an duine níos mó na seacht bpíosa eolais a láimhseáil ag aon am amháin! Mar a dúirt Dijkstra ina aiste "An Ríomhchláraitheoir Umhal":
+ Tá an ríomhchláraitheoir inniúil go hiomlán feasach ar méid srianta a bhlaoisce féin. Mar sin, bíonn tóir againn ar chuannacht agus simplíocht.  Ach níl sin éasca - dúirt Pascal tráth go raibh sé ag scríobh litir fada toisc gan an t-am a bheith aige litir gairid a scríobh, agus is amhlaidh don ríomhchláraitheoir go minic é. Táim ag léamh leagan de leabhar Eric S Raymond faoi láthair - "Ealaín Ríomhchlárú Unix" ina bhfuil léargas chuimsitheach ar na modhanna oibre a  bhronn cumas ar an gcóras sin, arbh cnámh droma an idirlíon é.
+
+Tá nath suntasach ann le Antoine de Saint-Exupéry:
+Il semble que la perfection soit atteinte non quand il n'y a plus rien à ajouter, mais quand il n'y a plus rien à retrancher.Ach, de bharr go bhfuil stair áirithe ag an gairm, tá rudaí airithe ag feabhsú, ainneoin toilleadh agus inniúlacht na ríomhairí a bheith ag fás as cuimse. Tá modhanna, uirlisí agus algartam forbartha agus scaipthe -  agus is mór an chabhair an idirlíon chuige sin - chun dul i ngleic go héifeachtach le fadhbanna atá le leigheas. Tá ríomhtheangacha agus creatlacha forbartha, a ligeann dúinn bogadh amach ón ríomhaire i dtreo samhail teibí.
+
+Sin an cúlra a chuireann ar chumas daoine leithéidí Processing a chuir ar fáil - modh chun dul i ngleic le feidhmeanna a chuir ag obair ar ríomhaire, gan a bheith buartha faoi na mionsonraí.
+
+Cá bhfios nach mbeidh ríomhtheanga don daoscar slua ann fós - ach beidh an Chléir diamhair i gcónaí de dhíth, ar chúla téarmaí!
+
+

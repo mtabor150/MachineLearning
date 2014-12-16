@@ -1,0 +1,27 @@
+||1109||
+I bhforbairt bogearraí, tá prionsabail thábhachtacha ann, ar nós "ceilt eolais" agus "imchochlú".
+Is é atá i gceist leo sin, nach mbeidh d'eolas ar fáil faoi feidhm nó modúl ach an méid atá riachtanach chun feidhm a bhaint as. Rud a chiallaíonn gur féidir, agus gur cheart, codanna ar léith den bhogearra a fhorbairt go hiomlán neamhspleách ar a chéile, agus a sheachnaíonn fabhtanna a eascraíonn as ríomhchláraitheoir amháin a bheith ag bunadh an méid a dhearann sé ar ghnéithe inmheánacha d'obair dhuine eile (nó dá chuid féin fiú, i modúl eile). Tá cúpláil dá leithéid baolach; is deacair bheith cinnte nuair a athraítear modúl amháin cén toradh a bheidh ag an athrú ar mhodúl eile.
+
+Prionsabail fónta is ea iad, mar sin.
+
+Ach go minic tagann siad salach ar riachtanais an fhoireann promhaidh. A mbíonn gá acu le léargas ar obair inmheánach modúil chun a bheith cinnte go bhfuil gach gné de clúdaithe acu, nó chun iarmhairtí nach raibh súil leo a thuiscint.
+
+Cuireann roinnt de na teicnicí a bhaintear feidhm astu san cód baic ar an obair seo.
+
+Úsáid athróga ar an gcruach mar shampla - athróga nach bhfuil de shaolré acu ach an t-am a bhfuil na modúl á rith. Nó úsáid an eochairfhocail "static" san ríomhtheanga C, mar shampla: a bhfuil de fóchiall aige go bhfuil na athróg sin folaithe lasmuigh den modúl ina bhfuil sé lonnaithe. Rud a cheadaíonn feidhm a bhaint as an t-ainm chéanna i modúl eile. An iarmhairt ar sin ná go mbeadh deacracht ag an innealtóir promhadh bheith cinnte go bhfuil an seoladh ceart á úsáid aige chun an athróg sin a scrúdú.
+
+Ní mór na nithe sin a chuir san áireamh.
+
+Mar sin:
+Bíodh ainmneacha d'athróga sainiúil.
+Bíodh fáil ar na hathróga a rialaíonn cosán an chód tríd an fheidhm.
+Bíodh fáil ar staid an modúl ar bhealach éasca - athróg stáid, mar shampla.
+
+Má tá tairiseach in úsáid sa chód, is mór an chabhair é beith mar athróg sa chuimhne san slí gur féidir leis an innealtóir promhadh é athrú, seachas ina oibreann litriúil.
+Is fusa i bhfad sárú teorainn nó a mhacasamhail a phromhadh san cás sin, agus go minic is feidir an tréimhse ama is gá chun scrúdú a chuir i gcrích a laghdú go mór.
+
+Tá riachtanais breise i gceist nuair a bhíonn mionphromhadh modúl i gceist - tá sé ciallmhar macra a úsáid in ionad an eochairfhocail static - rud a cheadaíonn leagan ar léith den mhodúl a bheith ann don promhadh - ina bhfuil na hathróga inmheánacha nochtaithe san slí is gur féidir iad a athrú chun an clár a chuir síos cosáin neamhghnácha chun an "ríomhchlárú chosanta" a phromhadh.
+
+(I é atá i gceist le ríomhchlárú cosanta ná píosa cód a dhéanann rud éigin ciallmhar nuair atá rud tarlaithe nár cheart é bheith intarlaithe. Mar a dúirt an té a dúirt, is ríomhchláraitheoir maith é an té a fhéachann gach treo sula trasnaíonn sé bóthar aon threo).
+
+

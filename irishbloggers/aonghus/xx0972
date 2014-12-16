@@ -1,0 +1,30 @@
+||972||
+Bíonn dhá príomhchúis ann go dteipeann ar clár ríomhaireachta.
+
+ * Toisc go bhfuil an clár fabhtach - go ndearna an ríomhchláraitheoir meancóg.
+ * Toisc go bhfuil an clár mícheart curtha i gcrích.Go hiondúil, bíonn cumasc den dá chúis i gceist.
+
+Tá bunchúiseanna simplí leis seo.
+
+Ní mór aon rud atá le déanamh ag ríomhaire a bhriseadh síos ina mhinmhionsonraí, agus iad a bheith sainmhínithe go soiléir agus in ord a n-úsáidte. Bíonn nodaireacht theibí de dhíth chun é seo a dhéanamh.
+
+Tá dhá deacracht leis seo.
+
+ * Ní thagann sé seo le modh nádúrtha smaointe an duine. Is fearr linne tosú amach le imlíne gharbh a phléann leis an creatlach ar dtús, agus ansin na mionsonraí a bhreacadh diaidh ar ndiaidh.
+ * Ní mór beith i'd do shaineolaí chun an nodaireacht a thuiscint. Ach ní saineolaí ar an nodaireacht gach saineolaí ar an ábhar is bunús leis an gclár atá le dearadh. Mar sin, cumarsáid bun agus barr na ceiste. Cumarsáid righin, saor ó dhé bhrí idir an ríomhchláraitheoir agus an ríomhaire (is fíor go bhfuil sé seo ró antrapamorfach - níl tuiscint ag an ríomhaire). Ach, níos tábhachtaí fós, cumarsáid idir an duine ar mhaith leis an ríomhaire a úsáid, agus an saineolaí a bhfuil ar a chumas an ríomhaire a chuir ag obair. Anseo is mó a chailltear an chath.
+
+Tá ríomheolaithe ag dul i ngleic leis an deacracht seo le blianta; agus is mó scéim samhlaíoch a cumadh. Ceann spéisiúil a tháinig mé ar arís ar mallaibh ná Ríomhchlárú Liteartha, téarma a chum Donald Knuth, Ollamh i Meiriceá.
+
+Ina aiste in 1984 "Ríomhchlárú Liteartha", leag sé amach modh nua oibre. Ghlac sé leis go mbeadh seilbh ag ríomhchláraitheoir ar dhá nodaireacht - teanga ríomhaireachta, mar shampla Pascal; agus nodaireacht chun cáipéisí a chruthú. Bhí an nodaireacht clóchur agus na clár a théann leis - TeX - cumtha ag Knuth, agus bhain sé feidhm as ina mhodh nua, ar thug sé "web" air.
+
+An bunphrionsabal atá i gceist ná nach mbeadh ann ach an t-aon foinse amháin don méid a chuirtear faoi bhráid an ríomhaire (faoi bhráid an tiomsaitheora, le bheith cruinn), agus bhí bhráid daoine i foirm cur síos ar an gclár. Líon ("web") a thug sé ar an bhfoinse seo, agus gineann dhá clár ar leith  foinsí agus cáipéisí as seo. Caithreáil a thug sé ar an bpróiseas chun clár ríomhaire a bhaint as an líon, agus fíodh ar an bpróiseas cáipéisíochta.
+
+Fágann an córas seo gur féidir an dearadh a dhéanamh ar shlí atá nádúrtha don duine, agus déanann an clár tangle atheagrú ar an gcód don tiomsaitheoir.
+
+Smaoineamh thar a bheith spéisiúil, a bhfuil forbairt tagtha air ó shin - tá suíomh cuimsitheach idirlíon ag plé leis ag  dóigh liom go mbainfidh mé feidhm go gairmiúil as fós - ní dóigh liom go bhfuil sé chomh h-oiriúnach céanna do mhór chláracha neadaithe, ar minic canúint ar leith den ríomhtheanga a bheith de dhíth dóibh. Bíonn gá freisin le breis nodaireacht d'fhonn uirlisí anailíse éifeachtach a dhéanamh.
+
+Ach chun cláracha cúnta a dhearadh, agus mar sin, b'fhéidir. Tá leagan don teanga ar C ar fáil - CWEB. 
+
+Tá sé ar intinn agam an scéal a chíoradh níos doimhne, pé scéal é.
+
+
