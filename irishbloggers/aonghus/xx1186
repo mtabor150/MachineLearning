@@ -1,0 +1,59 @@
+||1186||
+Thug Michal léacht thar a bheith suimiúil don Roth  ag tús na míosa ar Ionchódú Téacs ar Ríomhairí.
+
+Camchuairt ar na córais éagsúla chun litreacha a chuir in oiriúint do ríomhairí a bhí ann. Is le huimhreacha a bhíonn ríomhairí ag plé dar ndó, agus tá gá le gnás chun uimhir a cheangail le litir airithe.
+
+Léirmheas chuimsitheach a bhí ann ó ré dorcha ASCII na seacht ngiotáin, nuair a b'éigean do Ghaeil slaisíní a úsáid in áit an fada.
+
+Thug sé cuir síos thar a bheith maith ar Unicode, an córas uileghabhálach atá i réim anois. Tá gnéithe ar leith ag baint le Unicode, agus an uaillmhian sa chóras go mbeidh gach carachtar aibítre, agus go deimhin gach glif, sé sin gach cruth faoi leith a thagann ar charachtar, intuairisce sa chóras.
+
+Is de bharr débhrí sna córais reatha a bhíonn ciolar ciot déanta de théacs ar líne go minic. Tuigeann muidne, a bhfuil teanga againn nach leor an aibítir chúng Bhéarla lena scríobh, go maith na deacrachtaí.
+
+
+------------------------------------------
+
+Bhí ceist amháin agam nach raibh ar chumas Michal í a fhreagairt ar an bpointe - b'shin conas go díreach a chuirtear litreacha le luach Unicode níos airde ná 255 in iúl san gnás aonbhirt UTF-8.
+
+Ní thógaim air é. Is le réimse teibí ríomhaireachta - bunachair sonraí agus a mhacasamhail a bhíonn Michal ag plé. Ach is rúpálaí  giotáin mise. Is maith liom dul síos go leibhéal na n-uimhreacha dénártha san ríomhaire.
+
+Roinnt cúlra. Is le uimhreacha dénártha  1 nó 0, ann nó as, lasc dúnta nó oscailte  a phléann ríomhaire.
+
+Giotán an t-aonad is lú.
+
+Ach oibríonn ríomhaire le grúpaí giotáin. Beart an t-aonad is lú atá inseolta de ghnáth. 8 giotáin, ar féidir na luachanna idir 0 agus  28 - 1 a chuir in iúl leis. Baintear feidhm as leathfhocal (16 giotán) agus focal (32 giotáin) agus 64 giotáin chomh maith. Bíonn lucht ceol ag plé le focal 24 giotáin, ach sin scéal do lá eile.
+
+Bhuel, pé scéal é, córas 7 giotáin ab ea ASCII, atá linn fós i bhfolach i Unicode. Tá na carachtar is gá don Sacsbhéarla ionchódaithe sna seacht giotáin úd, sé sin sna huimhreacha idir 0 agus 127 (27 - 1).
+
+Ciallaíonn sin nach mbeadh luach 1 ar an gcéad giotán más "gnáth" carachtar atá i gceist.
+
+Tá tairbhe le baint as an méid is lú giotáin is féidir a úsáid chun sruth téacs a chuir in iúl. Mar sin, baineann UTF-8 feidhm as seo.
+
+Más na litreacha a-z nó A-Z atá i gceist, is leor beart.
+
+Chun litir le luach os cionn 127 a chuir in iúl, caithfear níos mó na beart amháin a úsáid. Ní mór linn na birt san carachtar a chuir in iúl don ríomhaire.
+
+Déantar sin trí an oiread giotáin agus atá birt sa charachtar a chur ar luach a haon, agus ansin náid a chur ag tús an beart birt.
+
+Bíonn brat ar gach beart leantach ansin chun cuir in iúl gur cuid de charachtar "leathan" atá ann - bíonn luach 10 ar an gcéad dá giotáin.
+
+Ríomhtar luach an litir ansin de réir na ngiotáin eile.
+
+mar shampla:
+Tá luach 0x101B = 4123 ag c buailte san córas Unicode (Ċ).
+
+Sin 0b0001_0000_0001_1011 san córas dénártha.
+
+Is gá níos mó na beart.
+
+Bheadh an cód seo leanas ann i UTF-8 (is dóigh liom!)
+
+0b1110_0001_10_00_0000_10_01_1011.
+
+Tá na giotáin dearga ann chun an ionchódú a láimhseáil, agus siad na cinn dubha an uimhir fhéin.
+
+i. 0b1110 -> trí bheart san cnuas.
+0b10 -> tús birt.
+
+Nach cliste an cleas é?
+
+

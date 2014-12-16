@@ -15,6 +15,8 @@
 
 using namespace std;
 
+#define USING_XI_VALUE false
+
 template <class VectorType = NgramVector>
 
 class Classifier{
@@ -22,9 +24,17 @@ class Classifier{
 private:
   //classified data set for universal vector for each class
   ClassifiedDataSet<VectorType> _universal_classified_data_set;
+
+  //normal data set to reperesent _universal_classified_data_set;
+  DataSet<VectorType> _universal_data_set;
   
   //map of classified data sets for each class
   unordered_map<string, ClassifiedDataSet<VectorType> > _classified_data_sets;
+
+  void set_universal_dataset()
+  {
+    _universal_data_set = (DataSet<VectorType>)_universal_classified_data_set;
+  }
   
 public:
   //add classified dataset
@@ -43,21 +53,29 @@ public:
   //remove all but TOP unwanted characteristics from vectors
   void remove_unwanted_characteristics(int top)
   {
-    _universal_classified_data_set.adjust_info_gain(_classified_data_sets, top);
+    //below accounts for all the 
+    if(USING_XI_VALUE)
+    {
+      _universal_classified_data_set.adjust_info_gain(_classified_data_sets, top);
+    }
+    else
+    {
+      _universal_classified_data_set.remove_all_but_top_from_infogain(top);
+    }
     for(int i=0; i<_universal_classified_data_set.size(); i++)
     {
       for(auto it=_universal_classified_data_set[i].begin(); it!= _universal_classified_data_set[i].end(); )
       {
-	if(_universal_classified_data_set.key_in_info_gain(it->first))
-	{
-	  //cout << "it->first " << it->first << endl;
-	  _universal_classified_data_set[i].erase(it++->first);
-	  //cout << "it->first " << it->first << endl;
-	}
-	else
-	{
-	  it++;
-	}
+      	if(!_universal_classified_data_set.key_in_info_gain(it->first))
+      	{
+      	  //cout << "it->first " << it->first << endl;
+      	  _universal_classified_data_set[i].erase(it++->first);
+      	  //cout << "it->first " << it->first << endl;
+      	}
+      	else
+      	{
+      	  it++;
+      	}
       }
     }
   }
@@ -70,15 +88,28 @@ public:
     
     for(auto it=_classified_data_sets.begin(); it!=_classified_data_sets.end(); it++)
     {
-      it->second.info_gain_for_each_value();
+      if(USING_XI_VALUE)
+      {
+        it->second.info_gain_for_each_value();
+      }
       //it->second.print_ordered();
     }
-    remove_unwanted_characteristics(100);
+    
+    if(USING_XI_VALUE)
+    {
+      remove_unwanted_characteristics(1000);
+    }
+    else
+    {
+      //remove_unwanted_characteristics(8000);
+    }
+    set_universal_dataset();
   }
   
   //print the info gain for the universal classified data set
   void print_universal_info_gain()
   {
+    cout << "---------------Universal InfoGain---------------------" << endl;
     _universal_classified_data_set.print_ordered(_classified_data_sets, 500);
     cout << endl;
     /*
@@ -111,52 +142,50 @@ public:
       cout << setw(8) << "info gain for " << setw(9)  << setprecision(5) << myheap.top_value() << " Data: " << myheap.top_data() << " ----";
       for(int i=0; i<_universal_classified_data_set.size(); i++)
       {
-	cout << _universal_classified_data_set[i].get_id() << ": " << setw(8) << setfill(' ') << _universal_classified_data_set[i][myheap.top_data()] << " ";
+        cout << _universal_classified_data_set[i].get_id() << ": " << setw(8) << setfill(' ') << _universal_classified_data_set[i][myheap.top_data()] << " ";
       }
       cout << endl;
       myheap.pop();
     }
   }
   
-  //classify without adjust for info_gain
-  string naive_classify(VectorType vector)
+  //classify a vector
+  string naive_classify(VectorType& vector)
   {
     vector.set_author("test");
+    /*
     _universal_classified_data_set.push_vector_back(vector);
     _universal_classified_data_set.set_universe();
     _universal_classified_data_set.smooth();
-    _universal_classified_data_set.set_universe();
+    _universal_classified_data_set.set_universe();*/
     unordered_map<string, long double> class_to_probability;
     //set all probabilities to 1
     for(int i=0; i<_universal_classified_data_set.size(); i++)
     {
       class_to_probability[_universal_classified_data_set[i].get_author()] = 1.0;
     }
-    DataSet<VectorType> temp_dist = (DataSet<VectorType>)_universal_classified_data_set;
-    
-    //cout << "this prob: " << class_to_probability.begin()->second << endl;
+
     int m= 0;
     long double last_max_prob = 1.0;
     long double max_prob;
     //iterate through vector and calculate conditional distribution
     for(auto it=vector.begin(); it!=vector.end(); it++)
     {
-      max_prob = 0.0;
-      //m++;
-      if(it->second >= 1.0)
+      string a_str = it->first;
+      if(_universal_classified_data_set[0].find(a_str) != _universal_classified_data_set[0].end())
       {
-	string a_str = it->first;
-	Distribution dist;
-	dist.conditional_dist_from_dataset(temp_dist, a_str);
+        //cout << "a_str = " << a_str << endl;
+	      Distribution dist;
+	      dist.conditional_dist_from_dataset(_universal_data_set, a_str);
 	
-	//iterate through distribution
-	for(auto it2=class_to_probability.begin(); it2!=class_to_probability.end(); it2++)
-	{
-	  if(it2->first != "test")
-	  {
-	    it2->second += it->second*log2(dist.get_prob(it2->first));
-	  }
-	}
+      	//iterate through distribution
+      	for(auto it2=class_to_probability.begin(); it2!=class_to_probability.end(); it2++)
+      	{
+      	  if(it2->first != "test")
+      	  {
+      	    it2->second += it->second*log2(dist.get_prob(it2->first));//_universal_classified_data_set.get_info_gain(it2->first);
+      	  }
+    	 }
       }
     }
     
@@ -167,12 +196,10 @@ public:
     {
       if(it->second > current_prob && it->first != "test")
       {
-	current_prob = it->second;
-	current_class = it->first;
+      	current_prob = it->second;
+      	current_class = it->first;
       }
     }
-    //remove Vector which is last vector
-    _universal_classified_data_set.pop_back();
     return current_class;
   }
   

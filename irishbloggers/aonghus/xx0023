@@ -1,0 +1,27 @@
+||23||
+I rith na seachtaine chuir fabht sa bhogearra atáim ag obair leis mearbhall orm. Píosa cód a bhí profa, dar liom, agus a d'oibrigh. Ní raibh i gceist ach lúb simplí - ceithre treoir simplí san teanga díolama nach raibh le déanamh aige ach luach áirithe a scríobh isteach sa chuimhne go réimsí seoltaí. Bhíos lán chinnte gur oibrigh sé, bhí sé profa agus athphrofa agam, ach faoi chúinsí ar leith - ag glanadh réimse cuimhne ar chrua earra nua, ní raibh an beart á dhéanamh.
+Seo a bhí le déanamh:1) Méadaigh an seoladh de focal amháin2) Scríobh an luach go dtí an seoladh 3) Cuir i gcomparáid leis an seoladh deiridh4) Más lú ná an seoladh deiridh é, fill ar 1.
+Ar chúis nár thuig mé ar feadh i bhfad bhí céim 1-3 ag tarlú uair amháin, ach ní raibh an lúb ag filleadh. Bé 0x60000000 an tús, agus 0x80000000 an deireadh, ar ríomhaire 32 giotán. Faoi dheireadh, bhuail splanc tuisceana mé - bhí an comparáid á dhéanamh amhail is do mba slánuimhreacha le sín a bhí i gceist - ach ba cheart go mbeifí ag caitheamh leo mar slánuimhreacha gan sín. San córas comhlánú le dónna a bhaintear feidhm as le ríomhairí, tá 0x80000000 diúltach, agus dá bhrí sin níos lú ná 0x60000000.
+
+000 0 0 
+001 1 1 
+010 2 2 
+011 3 3 
+100 4 -4 
+101 5 -3 
+110 6 -2 
+111 7 -1 
+Léiríonn an tábla an córas le 3 giotán.Is féidir 8 uimhir a chuir in iúl le 3 giotán; más slánuimhreacha gan sín a úsáidtear, tá 0..7 ar fáil. Ach bíonn uimhreacha le sín de dhíth. An buntáiste a bhaineann leis an gcóras comhlánú le dónna ná go n-oibríonn suimiú agus dealú beag beann ar an sín.
+
+Is éard is brí le comhlánú le dónna (nach fíor comhlánú atá i gceist leis) ná 0 agus 1 a bhabhtáil agus ansin 1 a chuir leis.
+
+Mar shampla - 2 = 010b.
+Comhlánú le haon: 101b.
+Haon a chuir leis sin: 110b.
+
+Feicfidh sibh go bhfuil 1 in san giotán is mó luach i gcónaí d'uimhir diúltach, agus náid d'uimhir dearfach. Is mór an áis é sin. (ach tá gaiste eile ann freisin, nuair a tharlaíonn síneadh síne nuair nach mbítear ag súil leis - mír eile do sin amach anseo!)
+
+
+
+
+

@@ -1,0 +1,56 @@
+||1311||
+Ag éirí as plé ar Daltaí
+Fadó, fadó....
+Is le 1 agus 0 a oibríonn ríomhairí, lasc dúnta nó oscailte.
+Chun usáid a bhaint astu, caithfear brí a bhaint as na huimhreacha dénártha seo. 
+Is cuma leis an riomhaire, nó le bheith cruinn, níl brí iontu don ríomhaire. (Ní mór dom bheith cúramach anseo - bhí rudaí crua le rá ag Djikstra faoi daoine a labhrann faoi ríomhairí i dtearmaí daonna.)
+Cuirtear na giotan i mbeart.
+
+Má thuigtear beart 4 giotán mar uimhir dearfach, is féidir ó 0 go 24, i. 16 a chuir in iúl.
+
+Ach tá uimhreacha diúltacha ann freisin.
+An chéid scéim ná comhlanú le haonna, sé sin, na giotán a iompu.
+
+
+00012110
+11102-110
+
+ach cuireann sin uimhir amú
+
+00002010
+11112-010
+
+Níl difríocht idir 0 agus -0 (de ghnáth)
+
+mar sin, baintear feidhm as comhlánú le dónna. Cuirtear 1 leis an luach a fuaireadh le comhlanú le haonna.
+
+
+00012110
+11112-110
+
+anois is feidir na huimhreacha ó -2n-1 go dtí 2n-1-1 a chuir in iúl le n giotán:
+
+
+00002010
+00012110
+00102210
+00112310
+01002410
+01012510
+01102610
+01112710
+11112-110
+11102-210
+11012-310
+10002-410
+10112-510
+10102-610
+10012-710
+10002-810
+
+Tá buntáiste eile ag comhlanú le dóanna - feidhmíonn suimiú agus dealú mar a bheifeá ag súil leis:
+
+00102 - 11112 = 2 - (-1) = 3 = 00112
+00102 + 11112 = 2 + (-1) = 1 = 00012
+
+

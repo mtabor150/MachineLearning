@@ -131,6 +131,27 @@ public:
     cout << endl;
   }
   /* end print() */
+
+  void print_ordered(const string& header = "vector" ){
+    //order values
+    Heap<double,string> myheap;
+    for(auto it=this->begin(); it!=this->end() ; it++)
+    {
+      double value = it->second;
+      myheap.insert(value, it->first);
+    }
+
+    //print ordered values
+    int i=0;
+    while(myheap.size() >1)
+    {
+      cout << "{" << myheap.top_data() << ":" << myheap.top_value() << "} ";
+      i++;
+      if(i%15 == 0) cout << endl;
+      myheap.pop();
+    }
+    cout << endl;
+  }
   
   
   /* cosine_distance() 

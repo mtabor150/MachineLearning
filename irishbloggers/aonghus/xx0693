@@ -1,0 +1,23 @@
+||693||
+Is dócha gur cuimhin libh Y2K. An cúis a bhí leis sin ná go raibh an dúrud cláir ríomhaireachta ann nach raibh in ann plé le blianta lasmuigh den raon 0..99. Mar a tharla, seachnaíodh fadhbanna tríd clár oibre cothabhála.
+
+Meabhraíodh dom inniu go bhfuil fadhb gaolta leis fós romhainn. Pléann córais Unix le am mar an uimhir soicind ó sainré1 airithe - meán-oíche ar an 1ú Eanáir 1970.
+
+Is mar slánuimhir 32 giotán a phléitear leis an t-am sin. Mar sin, ag  03:14:07 ar an 19 Eanáir 2038, beidh an slánuimhir is mó sroichte. Fadhb Y2K38? Beidh le feiceáil. Is dócha go bhfuil a dóthain foghlamtha as Y2K go seachnófar an dochair is measa; go háirithe más rud é gur baineadh feidhm mar is ceart as leabharlannaí ríomhaireachta.
+
+Ach chuir an cheist ar fad mé ag machnamh athuair ar conas a tomhaistear am. Shilfeá go bhfuil sé measartha simplí - lá, sin an achar ó nóin go nóin. Nóin, sin an uair go mbíonn an ghrian san pointe is airde san spéir. Soicind, sin an 1/(24*60*60) cuid de lá, ina bhfuil 24 uair de 60 nóiméad, agus 60 soicind san nóiméad.
+
+Ar sin atá an soicind bunaithe gan amhras. Ach is le cloig adamhach a tomhaistear an soicind caighdeánach de chuid an SI. Is ionann soicind de chuid an TAI - an t-Am Adamhach Idirnáisiúnta agus 9,192,631,770 tonnfhad den radaighníomhach ó adamh caeisiam agus é ag preabadh idir dhá leibhéal fuinnimh. (Mar a tharlaíonn sé, is meán scata cloig adamhacha a bhaintear feidhm as go praiticiúil).
+
+De bhrí nach bhfuil rothlú an Domhain seasta, bíonn difríocht ann idir TAI agus UTC - Am Uilíoch Lárnach. Bíonn gá mar sin le soicind bhisigh a chuir leis an am.
+
+Agus is mó casadh eile atá sna córais ama....
+
+Obair d'oíche eile is ea an lá Iúlach.
+
+
+------------------------------------------
+
+1 Epoch a tugtar ar an bpointe ama seo as Béarla. Tréimhse ama is mó a bhíonn i gceist le epoch; roghnaigh mé an téarma thuas ón méid a mhol Focal - an téarma is lú míchruinnis, dar liom. Bheinn buíoch as moladh feabhsaithe!
+
+

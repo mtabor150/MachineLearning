@@ -1,0 +1,23 @@
+||135||
+Is fada ó scríobh mé aon bhlas athrógseanchais anseo.
+
+Baineann an eachtra atá mé chun roinnt libh leis an gcuimhne sealadach a phléigh mé cheana, an cruach. Má bhíonn athróg in úsáid laistigh de fheidhm, ní bhíonn ionad buan sa chuimhne aige go hiondúil. Is lú cuimhne san iomláine atá de dhíth don ríomhchlár mar sin. Ach tá baoil ag baint leis. De bhrí go mbaintear athúsáid as an cuimhne, d'fheadfadh luach ar bith ann. Mura ndéantar luath cinnte a thabhairt don athróg roimh a úsáide, is féidir le iarmhairtí aisteacha bheith ar an gclár. Sa bhreis ar sin, ní minic go dtarlódh an rud céanna - fágann sin go mbíonn fabhtanna ann atá fíor dheacair a aimsiú.
+Rud a tharla do le déanaí.
+Bhí feidhm á scríobh agam chun píosaí ar leith a bhaint as teachtaireacht. Ach ní raibh sé cinnte go mbeadh na píosaí sa teachtaireacht. An riail a bhí ann ná go mbeadh carachtar ar leith - deighilteoir - ag scaradh na píosaí san teachtaireacht - agus má bhí píosa ar leith ann roimh an carachtar cuí i dtreo deireadh an teachtaireacht, go mbeadh gach deighilteoir roimhe sin ann.
+B'é an rud is simplí a dhéanamh mar sin ná féachaint tríd an teachtaireacht ar fad agus ionad na ndeighilteoir a bhreacadh síos. Bhí na hionad  stóráilte in eagar ar an cruach. (Eagar: grúpa de luachanna). Bhí líon na ndeighilteoir i dtaisce freisin.
+Bhí an algartam sách éasca mar sin:
+Más mó líon na ndeighilteoir ná an uimhir an deighilteoir atá á lorg móide 1agusmá tá ionad an deighilteora ina dhiadh lúide ionad an  deighilteora níos mó ná 1tá an píosa ann.
+I siombail, do deighilteoir n:  n < líonfad = pos[n+1] - pos[n] > 1
+Rinne mé dhá bhotún áfach; i gás amháin ba n <= líon a scríobh mé, agus níor chuir mé luach cinnte san eagar roimh ré.
+D'éalaigh an bhotúin seo tríd mo chuid promhadh féin, agus tríd an rannóg promhaidh. Ach ansin amuigh sa ghort bhí ag teip ar an gclár le teachtaireacht áirithe. 
+Ar ámharaí an tsaoil, nuair a rinne mise promhadh leis an dteachtaireacht céanna, ba léir an fabht. An rud a bhí ag tarlú ná go raibh n cothrom leis an líon; sé sin, ní raibh an deighilteoir ann in aon chor. De bharr an botúin, áfach, bhí an clár ag ríomh faid thar a bheith fada - toisc go raibh luach fós i pos[n+1].
+Bhí lúb eile ina dhiaidh a bhí ar lorg eolas áirithe i "fad" ó ionad - de bharr an fad a bheith ann mhór, bhí an cód ag iarraidh cuimhne lasmuigh den réimse ceadaithe ag stop an córas oibriúcháin an clár.
+Leasaigh mé an cód, ag ceartú an dá botún a rinne mé, agus sheol an clár go dtí an rannóg promhadh. Mar chuid dá bpromhadh siúd, theastaigh uathu an fabht a dhearbhú sna leagan roimhe sin. Ach níor éirigh leo - ní raibh an clár ag teip! 
+Bhí cúis leis sin - de bharr rudaí beaga a bheith éagsúil, ní raibh uimhir mhór ag pos[n+1] = mar sin, ní raibh fad mór á ríomh, agus níor sáraigh an clár an cuimhne ceadaithe!
+Bhí an t-ádh ormsa gur éirigh liom an fabht a aimsiú - mar bheadh sé deacair dhéanamh amach cá raibh an botún gan sin. (Ach ní dodhéanta, bhí eolas ann faoin bun locht - cuireann Linux eolas faoi chuimhne an cláir i dtaisce nuair a bhíonn drochfhabht ann, agus is féidir sin a iniúchadh)
+
+
+
+
+
+

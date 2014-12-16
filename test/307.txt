@@ -1,0 +1,20 @@
+Agus mé ag léamh aiste le Fred Brooks "An Eolaí Ríomhairí1 mar Uirliseoir" [PDF!], thug mé suntas don liosta seo de bhronntanais a thug Dia dúinn ag cruthú an Domhain:
+
+ * Beatha, agus saoirse ón mBás
+ * Cumann leis an Cruthaitheoir
+ * Cairdeas, ach go háirithe an pósadh
+ * Leanaí
+ * An dúlra, ach go háirithe ainmhithe
+
+ *  Saoirse
+ * Obair chruthaitheach le déanamhIs bronntanas atá san obair chruthaitheach, cinnte. Ach, mar a phléigh C.S. Lewis ina aiste "Deá obair agus Deá Oibreacha2", fágann an geilleagar mar atá sé anois gur beag duine againn go bhfuil an saoirse aige obair fiúntach a dhéanamh go maith ina ghnáth obair. Agus go minic gur droch obair a bhíonn i "Deá Oibreacha", i. obair charthanach.
+
+Táimse measartha sásta go dtí seo gur éirigh liom obair, a bhfuilim sásta deá obair a thabhairt air, a chuir i gcrích i mo shaol gairmiúil - obair mhaith ar nithe úsáideacha, fónta. Tuigim gur bronntanas é sin fosta, agus gur iomaí sclábhaí pá inár measc. Ba mhaith liom dá mbeadh geilleagar comhar seilbheach ann, mar a mholann Dubhaltach. Ach nílim ró dhóchasach; sílim go bhfuil bealach éigin idir na córais reatha de dhíth. Agus go bhfuil ról thábhacht ag coimhdeacht ina leithéid de chóras: go bhfágfaí leigheas gach faidhbe ag an leibhéal is ísle agus is féidir. Rud atá de dhíth go háirithe san tír seo, atá céasta ag ró lárú cumhachta in Átha Cliath. Agus go caithfidh aon chóras laigí an chine a chuir san áireamh. Féach an éifeacht atá ag rialaitheoir díograiseach ar chúrsaí airgid, mar shampla!  
+
+
+------------------------------------------
+
+1"eolaí ríomhaireachta" atá ag Focal. Ach tá idirdhealú tábhachtach ann idir "Computing Scientist" agus "Computer Scientist" sa Bhéarla, ar mhian liom a thabhairt slán. Bíonn, de réir Dijkstra, béim ar an inneall i Mheiriceá, agus ar an saothar a chuireann sé i gcrích san Eoraip. B'fhéidir nach fíor sin níos mó, ach sílim go bhfeileann "Eolaí Ríomhairí" níos fearr don rud atá idir chamáin ag Brooks.
+2Theip orm teacht air leagan den aiste seo ar líne.San leabhar Screwtape proposes a toast a léigh mise é.
+
+

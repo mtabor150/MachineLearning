@@ -1,0 +1,58 @@
+||1324||
+Ní hea, ní scéal eile maidir le Shell chun Sáile atá anseo (cé go nguím gach ráth ar Phobal Ros Dumhach).
+
+Ach tá sé tamall ó scríos aon bhlas teicniúl anseo.
+
+Táim ag obair leis an gcoars Unix cuid mhaith na laethanta seo.
+
+Siad trí suailce an saor chláir ná leisce, mífhoighne agus hubris.
+
+Tá na tréithe úd go laidir ionamsa, agus bhí sa dream a chuir Unix ar fáil an chéad lá riamh.
+
+Ceann des na riailacha beatha atá againn ná, má déantear rud níos mó ná trí huaire, gur cheart é a uathoibriú, i. clár bheag a scríobh chun an tasc sin a dhéanamh.
+
+Is mór an chabhair chuige seo corás na píopaí atá in Unix. Is féidir sonraí a thagann as clár amháin (an aschur) a úsaid mar amhabhár chlár eile (inchur). Usáidtear sort speisialta comhaid chuige seo, ar a dtugtar "píopa". 
+
+Usáidtear an comhartha "|" chun sreang cláracha a chuir le chéile.
+
+Abair gur mian leat gach comhad go bhfuil "master" mar chuid den ainm a fháil
+
+
+find . -name "*master*"
+
+Tabharfaidh sin liosta na gcomhad dhuit.
+
+anois is mian leat fáil réidh le haon cheann atá i comhadlann RCS 
+
+
+grep -v RCS
+
+Tabharfaidh sin, ach an liosta a thabhairt mar inchur dó, an liosta gan na cinn RCS dhuit.
+
+Anois, is mian leat iad a chosaint ó bheith scríofa:
+
+
+chmod 444
+
+
+------------------------------------------
+
+
+find . -name "*master*" | grep -v RCS | xargs chmod 444
+
+------------------------------------------
+
+
+Cleas breise atá san xargs - ní mian linn an liosta a athrú, ach is ceart an clár chmod a chuir ag obair ar gach ball den liosta. 
+
+Cleas deas eile ná "alias", i. is féidir ordú a bhíonn in usáid agat go minic a ainmniú go sonrach
+
+
+alias aimsighMaster "find . -name "*master*"
+
+Anois, níl le clobhualadh ach "aimsighMaster". Go deimhin, de ghnáth is leor an chéad cúpla litir a chló, agus ansan tab a bhrú, agus cuireann an ríomhaire an chuid eile ar fáil.
+
+
+Lipéid: gaeilge
+
+

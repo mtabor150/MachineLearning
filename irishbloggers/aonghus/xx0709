@@ -1,0 +1,29 @@
+||709||
+
+Ó ré na líonraí teilifíse ar aghaidh, táid ann a dhéanann staidéir ar luach líonra agus cur síos mhatamaiticiúil air. Cuireann Dlí Sarnoff síos ar líonra craolta. Tá an luach i gcoibhneas le líon na mball N. Ach i gcás líonra a mbíonn naisc idir baill aonair, tagann Dlí Metcalfe i gceist.
+
+Is féidir le  líonra le N baill N(N-1)/2 naisc a chuir ar fáil. Sé sin, tá an luach i gcoibhneas le N2.
+
+Cuireann fear darbh ainm Reed dlí eile chun tosaigh. Tráchtann sé ar an dóigh a chuidíonn bogearraí airithe ar an idirlíon le daoine meithleacha a bhunú. Tugann sé "Líonraí Meitheal Spreagtha" orthu seo. Is féidir le N duine 2N-N-1 grúpaí dá leithéid a bhunú.
+
+Mar shampla, má tá A,B,C agus D i ngrúpa, is féidir na foghrúpaí seo leanas a bhunú
+
+ * A + B
+ * A + C
+ * A + D
+ * B + C
+ * B + D
+ * C + D
+ * A + B + C
+ * B + C + D
+ * A + C + D
+ * A + B + D
+ * A + B + C +DGan amhras, ní gá go mbeadh gach grúpa mar sin ann; ach fós is é an éifeacht meitheal spreagtha is mó a chuireann le luach an líonra, toisc go bhfásann 2N chomh gasta sin. San léaráid thuas, is ionann na hualaí agus:
+a=0.1
+b=0.01
+c=0.001
+Is léir mar a fhásann an cuar ana ghasta ar fad nuair atá fiú an míliú cuid de na grúpaí a d'fheadfadh a bheith ann, ann. Sin rún Facebook agus a leithéidí. Sin cumhacht an idirlíon, a chuireann ar chumas daoine teacht le chéile beag beann ar am agus spás chun togra amhail Wikipedia agus Linux a chuir i gcrích. Ar scáth a chéile a mhaireann na daoine, ach laghdaíonn an líon costas cumarsáide go radacach.
+
+Liomsa, le cabhair ó gnuplot, an léaráid.
+
+

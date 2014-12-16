@@ -1,0 +1,34 @@
+||1379||
+Mar a luaigh mé cheana, is féidir casadh a ríomhadh go gonta le ceatharníon.
+
+Is mor an chabhair é sin do graificí ar ríomhaire, agus do treosuíomh spasárthaigh.
+
+Ar dtús, conas a fheidhmíonn sé? Tá cuir síos cuimsitheach ag Wikipedia anseo.
+
+Go bunúsach, is féidir casadh tríd uileann u, thart ar áis a, a fheidmiú mar ceatharníon
+q = isin(u/2) û + jsin(u/2) û + ksin(u/2) û + cos(u/2)
+Is féidir pointe p = (x,y,z) a chasadh tríd ceatharníon qp = ix + jy + kz + 0 a dhéanamh as (caithfear é a normalú ar dtús, ach fágfaidh mé é sin ar lár anois!)
+
+pqcasta = q * pq * q-1
+
+Is é an ceatharníon comhchuingeach do q é q-1, i. 
+q-1 = -ix - jy -kz + s
+más fíor gur
+q = ix + jy + kz + s
+
+
+
+
+------------------------------------------
+
+Is treosuíomh spásarthaigh is mó is suim liomsa.
+Bíonn córas tagartha ag spásárthach - áiseanna x,y,z dá chuid fhéin. Bíonn siad bunaithe ar bunphointe ag meáchanláir an árthaigh. Is gnách an áis x a bheith i treo airithe, abair an treo ina mbeidh an grian de ghnath, agus y agus z amach uaidh sin.
+
+Chun cuir síos ar treosúiomh an árthaigh sa spás, baintear feidhm as fráma tagartha socraithe, abair an corás An Fráma Tagartha Neamhaí Idirnáisiúnta.
+
+Bíonn ceartharníon ann ansin a chuireann síos ar cén casadh is gá chun go mbeadh fráma tagartha an árthaigh comhthreomhar leis an fráma támhúil a róghníodh.
+ 
+
+Lipéid: gaeilge
+
+

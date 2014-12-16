@@ -1,0 +1,24 @@
+(re "Ait")
+
+Le Seán O’Connor
+
+“Goitse, a mhic” arsa an t-ardghiolla agus é ag sméid chuige giolla a raibh cuma bhuartha air.  
+“Cad tá ag cur as duit?”  
+“Tá,” arsa an giolla, “go bhfuil rud éigin ar siúl thíos nach bhfaca mé cheana.”  
+“Feicimis, nó cén chearn den chruinne ar a raibh tú ag dearcadh?”  
+“Thíos ansin, áit a bhfuil an bheirt úd.”  
+D’amharc an t-ardghiolla agus d’éist.  
+“Maith thú, a mhic.  Is maith an dearcaí tú.  Caithimse an scéala seo a roinnt leis an mbas.  
+
+Chnag an t-ardghiolla ar an doras, ach freagra ar bith ní bhfuair sé.  Bhrúigh sé an doras isteach agus dhruid leis an té a bhí sa leaba.  
+“A thiarna”, ar sé, “múscail, mar tá rud tarlaithe thíos nár tharla cheana.”  
+Mhúscail an codlatóir agus dhírigh súil fheargach ar an ard-ghiolla.  
+“Nach féidir libh” ar sé, “beagán sosa a thabhairt dom agus mé traochta i ndiaidh na trioblóide a bhí againn leis an dream damanta sin?  Cad tá tarlaithe?”
+“Tá beirt thíos agus sé croí an scéil ná gur shamhlaigh siad thú agus thairis sin gur ainmnigh siad thú freisin.”
+“D’ainmnigh siad mé?  Cad a chumadar mar ainm orm?”
+“An Té Atá” arsa an t-ardghiolla.  “Meas tú go bhfuil sé in am dúinn iad a sheoladh chucu?”
+“Ní gá sin, a Mhichíl,” arsa an tiarna.  “Tá siad acu cheana féin, mar féach gur shamhlaigh siad agus gur ainmnigh siad mé.”
+
+(Comhar, Eanáir 2002)
+
+
